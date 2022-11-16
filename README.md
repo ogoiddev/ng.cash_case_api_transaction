@@ -191,3 +191,29 @@ Criar o arquivo .eslintrc.json com o seguinte conteúdo:
 * Helmet
 * Swagger
 * ZOD
+
+## [TypeORM - Postgres Driver and Docker Compose tags auto-config](https://typeorm.io/)
+
+```
+npm install typeorm --save
+```
+You need to install reflect-metadata shim:
+```
+npm install reflect-metadata --save
+```
+```
+npm install @types/node --save-dev
+```
+
+cli command to pre-config:
+```
+npx typeorm init --database postgres --docker
+```
+
+## [Cors](https://brianflove.com/2017-03-22/express-cors-typescript/)
+```
+npm install cors --save
+```
+```
+npm install @types/cors --save-dev
+```

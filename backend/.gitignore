@@ -1,6 +1,6 @@
-/build
-/node_modules
-.env
-*.http
-.vscode
-
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
