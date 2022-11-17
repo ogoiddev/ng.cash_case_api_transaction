@@ -6,10 +6,7 @@ services:
     build: ./
     ports:
       - 3001:3001
-    working_dir: /app-backend
-    command: npm run dev
-    volumes: 
-      - ./src:/app-backend/src
+    command: npm start
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ngcash
@@ -17,6 +14,8 @@ services:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
       APP_PORT: 3001
+    depends_on: 
+      - postgres
 
   postgres:
     image: "postgres:14.5"

@@ -4,13 +4,15 @@ import {
   JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn,
 } from 'typeorm';
 import Account from './Account';
+import { MinLength } from 'class-validator'
 
 @Entity('Users')
 export default class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({ type: 'text' })
+  @MinLength(3)
   userName: string;
 
   @Column({ type: 'text' })

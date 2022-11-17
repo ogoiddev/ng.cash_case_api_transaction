@@ -220,6 +220,11 @@ Criamos um script para facilitar e gerar migrations pela Entity definida:
     "mi:run": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:run"
 ```
 
+## [Class Validator](https://www.npmjs.com/package/class-validator)
+```
+npm i class-validator
+```
+
 ## [Cors](https://brianflove.com/2017-03-22/express-cors-typescript/)
 ```
 npm install cors --save
