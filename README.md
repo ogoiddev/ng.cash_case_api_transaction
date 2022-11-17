@@ -205,9 +205,19 @@ npm install reflect-metadata --save
 npm install @types/node --save-dev
 ```
 
-cli command to pre-config:
+cli command to pre-config (Atenção este comando gera arquivos automaticamente):
 ```
 npx typeorm init --database postgres --docker
+```
+
+Criamos um script para facilitar e gerar migrations pela Entity definida:
+```
+"scripts": {
+    "dev": "ts-node --transpile-only src/api/index.ts",
+    "start": "ts-node src/api/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mi:generate": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:generate ./src/database/migrations/default",
+    "mi:run": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:run"
 ```
 
 ## [Cors](https://brianflove.com/2017-03-22/express-cors-typescript/)

@@ -25,6 +25,7 @@
       "editorconfig",
       "mocha"
   ],
+  "ignorePatterns": ["src/database/**"],
   "rules": {
       "no-underscore-dangle": "off",
       "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
