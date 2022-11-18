@@ -11,7 +11,21 @@ export default class UserService {
   private accountDB = AccountRepository;
 
   public async getAllUsers() {
-    const results = this.userDB.find();
+    const results = await this.userDB.find();
+    return results;
+  }
+
+  public async getUserById(id: string) {
+    const results = await this.userDB.findOneBy({ id });
+    console.log(results);
+
+    return results;
+  }
+
+  public async getUserByUserName(userName: string) {
+    const results = await this.userDB.findOneBy({ userName });
+    console.log(results);
+
     return results;
   }
 

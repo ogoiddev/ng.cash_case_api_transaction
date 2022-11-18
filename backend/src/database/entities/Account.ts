@@ -4,8 +4,8 @@ import User from './User';
 
 @Entity('Accounts')
 export default class Account {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   
   @Column('decimal', {default: 100})
   balance: number;

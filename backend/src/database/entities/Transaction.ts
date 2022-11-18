@@ -8,8 +8,8 @@ import Account from './Account';
 
 @Entity('Transactions')
 export default class Transaction {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ManyToOne(() => Account, account => account.account)
   @JoinColumn({ name: 'debited_account_id' })
