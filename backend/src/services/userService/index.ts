@@ -1,7 +1,7 @@
-import { Like } from 'typeorm';
+import { ILike } from 'typeorm';
 import AppDataSource from '../../database/data-source';
 import User from '../../database/entities/User';
-import { AccountRepository }
+import { AccountRepository } 
   from '../../database/repositories/AccountRepository';
 import { UserRepository } from '../../database/repositories/UserRepository';
 import { ErrorTypes } from '../../errors/catalog';
@@ -29,9 +29,9 @@ export default class UserService {
 
   public async getUserByUserName(userName: string) {
     const results = await this.userDB
-      .findOne({ where: { userName: Like(`%${userName}%`) } });
+      .findOne({ where: { userName: ILike(`%${userName}%`) } });
     console.log('by name', results);
-    if (!results) throw Error(ErrorTypes.EntityNotFound);
+    
     return results;
   }
   

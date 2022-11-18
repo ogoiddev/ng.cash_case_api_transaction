@@ -1,3 +1,4 @@
+import { ErrorTypes } from '../../errors/catalog';
 import User from '../../database/entities/User';
 import { checkPassword } from '../../utils/Bcrypt/services';
 import Generate from '../../utils/JWT/JWT.Generate';
@@ -10,12 +11,13 @@ export default class LoginService {
 
   public async login(userDTO: User) {
     const results = await this.userDB.getUserByUserName(userDTO.userName);
+    if (!results) throw Error(ErrorTypes.EntityNotFound);
 
     checkPassword(userDTO.password, results.password);
 
     const token = this.JWT.Generate.createToken(results);
 
-    return { results, token };
+    return { ...results, token };
   }
 
   public async loginValidate(token: string) {
