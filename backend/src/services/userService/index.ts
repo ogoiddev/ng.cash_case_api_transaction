@@ -5,6 +5,7 @@ import { AccountRepository }
   from '../../database/repositories/AccountRepository';
 import { UserRepository } from '../../database/repositories/UserRepository';
 import { ErrorTypes } from '../../errors/catalog';
+import { cryptPassword } from '../../utils/Bcrypt/services';
 import accountNumberGenerate from './generateAccountNumber';
 import Validate from './validations';
 
@@ -28,20 +29,18 @@ export default class UserService {
 
   public async getUserByUserName(userName: string) {
     const results = await this.userDB
-      .find({ where: { userName: Like(`%${userName}%`) } });
+      .findOne({ where: { userName: Like(`%${userName}%`) } });
     console.log('by name', results);
-
+    if (!results) throw Error(ErrorTypes.EntityNotFound);
     return results;
   }
-
+  
   public async saveNewUser(userDTO: User) {
     const setUserDataObj = this.userDB.create(userDTO);
     await Validate.newUser(setUserDataObj);
 
     const checkDuplicateData = await this.getUserByUserName(userDTO.userName);
-    console.log(checkDuplicateData);
-    
-    if (checkDuplicateData.length) throw Error(ErrorTypes.UserAlreadyExists);
+    if (checkDuplicateData) throw Error(ErrorTypes.UserAlreadyExists);
     
     const queryRunner = AppDataSource.createQueryRunner();
     await queryRunner.connect();
@@ -58,11 +57,14 @@ export default class UserService {
   }
 
   private async saveUserAndAccountData(userDataToSave: User) {
+    const hashPassword = cryptPassword(userDataToSave.password);
     const accountNumber = accountNumberGenerate(userDataToSave.userName);
     
     const setAccountDataObj = this.accountDB.create({ number: accountNumber });
 
     await this.accountDB.save(setAccountDataObj);
-    await this.userDB.save({ ...userDataToSave, account: setAccountDataObj });
+    await this.userDB.save({
+      ...userDataToSave, account: setAccountDataObj, password: hashPassword,
+    });
   }
 }
