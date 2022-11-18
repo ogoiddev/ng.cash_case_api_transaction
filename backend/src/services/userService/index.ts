@@ -1,3 +1,4 @@
+import { ErrorTypes } from '../../errors/catalog';
 import AppDataSource from '../../database/data-source';
 import User from '../../database/entities/User';
 import { AccountRepository }
@@ -17,14 +18,16 @@ export default class UserService {
 
   public async getUserById(id: string) {
     const results = await this.userDB.findOneBy({ id });
-    console.log(results);
+    console.log('by id', results);
+
+    if (!results) throw Error(ErrorTypes.EntityNotFound);
 
     return results;
   }
 
   public async getUserByUserName(userName: string) {
     const results = await this.userDB.findOneBy({ userName });
-    console.log(results);
+    console.log('by name', results);
 
     return results;
   }
@@ -52,6 +55,8 @@ export default class UserService {
 
   private async saveUserAndAccountData(userDataToSave: User) {
     const accountNumber = accountNumberGenerate(userDataToSave.userName);
+    console.log(accountNumber);
+    
     const setAccountDataObj = this.accountDB.create({ number: accountNumber });
 
     await this.accountDB.save(setAccountDataObj);

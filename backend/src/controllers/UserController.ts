@@ -24,7 +24,7 @@ export default class UserController {
   
   public getUserByUserName = async (req: Request, res: Response) => { 
     const { name } = req.query;
-
+    
     const results = await this.service.getUserByUserName(name as string);
     res.status(200).json(results);
   };

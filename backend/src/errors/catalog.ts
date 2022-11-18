@@ -1,6 +1,6 @@
 export enum ErrorTypes {
   EntityInvalid = 'EntityInvalid',
-  InvalidMongoId = 'InvalidMongoId',
+  EntityNotFound = 'EntityNotFound',
   InvalidPasswordBcrypt = 'InvalidPasswordBcrypt',
   InvalidTokenTypeOrEmpty = 'InvalidTokenTypeOrEmpty',
 }
@@ -19,9 +19,9 @@ export const errorCatalog: ErrorCatalog = {
     error: 'User info invalid',
     httpStatus: 404,
   },
-  InvalidMongoId: {
-    error: 'Id must have 24 hexadecimal characters',
-    httpStatus: 400,
+  EntityNotFound: {
+    error: 'User Not Found, maybe wrong ID',
+    httpStatus: 404,
   },
   InvalidPasswordBcrypt: {
     error: 'Problem with password bcrypt',

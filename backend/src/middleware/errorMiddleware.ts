@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ErrorRequestHandler } from 'express';
 import { JsonWebTokenError } from 'jsonwebtoken';
+import { QueryFailedError } from 'typeorm';
 import { ErrorTypes, errorCatalog } from '../errors/catalog';
 
 const errorHandler: ErrorRequestHandler = (
@@ -10,6 +11,9 @@ const errorHandler: ErrorRequestHandler = (
   _next,
 ) => {
   if (err instanceof JsonWebTokenError) { 
+    return res.status(400).json({ message: err.message });
+  }
+  if (err instanceof QueryFailedError) {
     return res.status(400).json({ message: err.message });
   }
 

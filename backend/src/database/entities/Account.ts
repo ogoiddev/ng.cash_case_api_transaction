@@ -13,7 +13,7 @@ export default class Account {
   @Column('text', {default: '001'})
   agency: string;
 
-  @Column('text')
+  @Column({ type: 'text' , unique: true})
   number: string;
 
   @OneToMany(() => User, user => user.account)

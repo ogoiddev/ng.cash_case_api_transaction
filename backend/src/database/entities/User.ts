@@ -21,7 +21,7 @@ export default class User {
   @Matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,20}$)/g)
   password: string;
 
-  @ManyToOne(() => Account, account => account.account)
+  @ManyToOne(() => Account, account => account.account, { nullable: false,  eager: true })
   @JoinColumn({ name: 'account_id' })
   account: Account;
 }

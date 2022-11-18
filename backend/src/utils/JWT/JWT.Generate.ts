@@ -5,7 +5,7 @@ class JWT {
   static createToken(user: Omit<User, 'password'>) {
     const token = jwt.sign({ data: user }, process.env.JWT_SECRET 
       || 'jwt_secret', {
-      expiresIn: '14d',
+      expiresIn: '1d',
       algorithm: 'HS256',
     });
     return token;
