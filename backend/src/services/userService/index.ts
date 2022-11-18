@@ -1,9 +1,10 @@
 import AppDataSource from '../../database/data-source';
-import { UserRepository } from '../../database/repositories/UserRepository';
 import User from '../../database/entities/User';
-import Validate from './validations';
 import { AccountRepository }
   from '../../database/repositories/AccountRepository';
+import { UserRepository } from '../../database/repositories/UserRepository';
+import accountNumberGenerate from './generateAccountNumber';
+import Validate from './validations';
 
 export default class UserService {
   private userDB = UserRepository;
@@ -31,7 +32,8 @@ export default class UserService {
   }
 
   private async saveUserAndAccountData(userDataToSave: User) {
-    const setAccountDataObj = this.accountDB.create();
+    const accountNumber = accountNumberGenerate(userDataToSave.userName);
+    const setAccountDataObj = this.accountDB.create({ number: accountNumber });
 
     await this.accountDB.save(setAccountDataObj);
     await this.userDB.save({ ...userDataToSave, account: setAccountDataObj });

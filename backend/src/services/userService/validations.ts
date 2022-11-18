@@ -5,8 +5,9 @@ import User from '../../database/entities/User';
 export default class Validate {
   static async newUser(setUserDataObj: User) {
     const errors = await validate(setUserDataObj);
+    console.log(errors);
     
-    if (errors.length) {      
+    if (errors.length) {
       throw Error(ErrorTypes.EntityInvalid);
     }
   }

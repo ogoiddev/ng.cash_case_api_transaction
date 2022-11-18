@@ -10,6 +10,12 @@ export default class Account {
   @Column('decimal', {default: 100})
   balance: number;
 
+  @Column('text', {default: '001'})
+  agency: string;
+
+  @Column('text')
+  number: string;
+
   @OneToMany(() => User, user => user.account)
   account: Account[];
 
