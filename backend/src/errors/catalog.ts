@@ -1,6 +1,7 @@
 export enum ErrorTypes {
   EntityInvalid = 'EntityInvalid',
   EntityNotFound = 'EntityNotFound',
+  UserAlreadyExists = 'UserAlreadyExists',
   InvalidPasswordBcrypt = 'InvalidPasswordBcrypt',
   InvalidTokenTypeOrEmpty = 'InvalidTokenTypeOrEmpty',
 }
@@ -29,6 +30,10 @@ export const errorCatalog: ErrorCatalog = {
   },
   InvalidTokenTypeOrEmpty: {
     error: 'Problem with token',
+    httpStatus: 400,
+  },
+  UserAlreadyExists: {
+    error: 'Nome de usuário ja cadastrado',
     httpStatus: 400,
   },
   

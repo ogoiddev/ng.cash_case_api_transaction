@@ -1,9 +1,10 @@
-import { ErrorTypes } from '../../errors/catalog';
+import { Like } from 'typeorm';
 import AppDataSource from '../../database/data-source';
 import User from '../../database/entities/User';
 import { AccountRepository }
   from '../../database/repositories/AccountRepository';
 import { UserRepository } from '../../database/repositories/UserRepository';
+import { ErrorTypes } from '../../errors/catalog';
 import accountNumberGenerate from './generateAccountNumber';
 import Validate from './validations';
 
@@ -26,7 +27,8 @@ export default class UserService {
   }
 
   public async getUserByUserName(userName: string) {
-    const results = await this.userDB.findOneBy({ userName });
+    const results = await this.userDB
+      .find({ where: { userName: Like(`%${userName}%`) } });
     console.log('by name', results);
 
     return results;
@@ -36,6 +38,11 @@ export default class UserService {
     const setUserDataObj = this.userDB.create(userDTO);
     await Validate.newUser(setUserDataObj);
 
+    const checkDuplicateData = await this.getUserByUserName(userDTO.userName);
+    console.log(checkDuplicateData);
+    
+    if (checkDuplicateData.length) throw Error(ErrorTypes.UserAlreadyExists);
+    
     const queryRunner = AppDataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -43,19 +50,15 @@ export default class UserService {
       await this.saveUserAndAccountData(setUserDataObj);
       
       await queryRunner.commitTransaction();
+      const results = await this.getUserByUserName(userDTO.userName);
+      return results;
     } catch (err) {
       await queryRunner.rollbackTransaction();
-    } finally {
-      await queryRunner.release();
-    }
-
-    const results = this.userDB.findOneByOrFail(userDTO);
-    return results;
+    } 
   }
 
   private async saveUserAndAccountData(userDataToSave: User) {
     const accountNumber = accountNumberGenerate(userDataToSave.userName);
-    console.log(accountNumber);
     
     const setAccountDataObj = this.accountDB.create({ number: accountNumber });
 

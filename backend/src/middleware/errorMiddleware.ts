@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ErrorRequestHandler } from 'express';
 import { JsonWebTokenError } from 'jsonwebtoken';
@@ -16,6 +17,7 @@ const errorHandler: ErrorRequestHandler = (
   if (err instanceof QueryFailedError) {
     return res.status(400).json({ message: err.message });
   }
+  console.log(err);
 
   const messageAsErrorType = err.message as keyof typeof ErrorTypes;
   // vamos usar a mensagem para acessar um erro do nosso catálogo

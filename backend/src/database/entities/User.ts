@@ -12,12 +12,12 @@ export default class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'text' , unique: true})
+  @Column({ name: 'user_name', type: 'text' , unique: true})
   @MinLength(3)
   @MaxLength(20)
   userName: string;
 
-  @Column({ type: 'text' , unique: true})
+  @Column({ type: 'text' })
   @Matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,20}$)/g)
   password: string;
 
