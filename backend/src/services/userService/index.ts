@@ -10,6 +10,11 @@ export default class UserService {
   private userDB = UserRepository;
   private accountDB = AccountRepository;
 
+  public async getAllUsers() {
+    const results = this.userDB.find();
+    return results;
+  }
+
   public async saveNewUser(userDTO: User) {
     const setUserDataObj = this.userDB.create(userDTO);
     await Validate.newUser(setUserDataObj);

@@ -10,4 +10,9 @@ export default class UserController {
     const results = await this.service.saveNewUser(body);
     res.status(201).json(results);
   };
+
+  public getAllUsers = async (req: Request, res: Response) => { 
+    const results = await this.service.getAllUsers();
+    res.status(200).json(results);
+  };
 }
