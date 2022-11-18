@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Transaction from './Transaction';
 import User from './User';
 
@@ -16,8 +16,8 @@ export default class Account {
   @Column({ type: 'text' , unique: true})
   number: string;
 
-  @OneToMany(() => User, user => user.account)
-  account: Account[];
+  @OneToOne(() => User, user => user.account)
+  account: Account;
 
   @OneToMany(() => Transaction, t => t.debit)
   debit: Account[];

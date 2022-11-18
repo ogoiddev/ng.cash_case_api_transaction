@@ -2,7 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn,
+  JoinColumn, ManyToOne, PrimaryGeneratedColumn
 } from 'typeorm';
 import Account from './Account';
 
@@ -11,11 +11,11 @@ export default class Transaction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Account, account => account.account)
+  @ManyToOne(() => Account, account => account.account, { eager: true })
   @JoinColumn({ name: 'debited_account_id' })
   debit: Account;
 
-  @ManyToOne(() => Account, account => account.account)
+  @ManyToOne(() => Account, account => account.account, { eager: true })
   @JoinColumn({ name: 'credited_account_id' })
   credit: Account;
 
