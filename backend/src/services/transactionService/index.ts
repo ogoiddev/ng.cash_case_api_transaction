@@ -39,54 +39,55 @@ export default class TransactionService {
     if (users.userD.account.balance < userNameAndAmount.amount) {
       throw Error(ErrorTypes.InsufficientBalance);
     }
-
-    if (users) {
-      const transactionToSave = this.transactionDB
-        .create({
-          debited_account_id: users.userD.account_id,
-          credited_account_id: users.userC.account_id,
-          value: userNameAndAmount.amount,
-        });
-        
-      await this.tryToTransfer(transactionToSave, users);
-    }
+    
+    const transactionToSave = this.transactionDB
+      .create({
+        debited_account_id: users.userD.account_id,
+        credited_account_id: users.userC.account_id,
+        value: userNameAndAmount.amount,
+      });
+    
+    await this.tryToTransfer(transactionToSave, users);
   }
 
   private async tryToTransfer(TToSave: Transaction, users: IUsers) {    
     await this.queryRunner.connect();
     await this.queryRunner.startTransaction();
     try {
-      const transferResults = await this.transactionDB.save(TToSave);
+      const transactionResults = await this.transactionDB.save(TToSave);
+      console.log(users);
       
+      const debitBalance = users.userD.account.balance
+        - transactionResults.value;
       await this.accountDB.update(
-        users.userD.account_id,
-        { balance: users.userD.account.balance - transferResults.value },
+        { id: users.userD.account_id },
+        { balance: debitBalance },
       );
 
+      const creditBalance = users.userC.account.balance
+        + transactionResults.value;
+      console.log(creditBalance);
+      
       await this.accountDB.update(
-        users.userC.account_id,
-        { balance: users.userC.account.balance + transferResults.value },
+        { id: users.userC.account_id },
+        { balance: creditBalance },
       );
 
       await this.queryRunner.commitTransaction();
-
-      return await this.transactionDB
-        .findOne({ where: { id: transferResults.id } });
+      return transactionResults;
     } catch (err) {
       await this.queryRunner.rollbackTransaction();
       throw Error('Transaction fail');
-    } finally {
-      await this.getAllTransactions();
-    }
+    } 
   }
 
   private async validateAndGetUsers(
     userDToken: string,
     userC: IUserNameAndAmountDTO,
   ) {
-    const user = ValidateJWT.validateToken(userDToken);
+    const userFromToken = ValidateJWT.validateToken(userDToken);
     
-    if (user.user_name.toLowerCase()
+    if (userFromToken.user_name.toLowerCase()
       === userC.userName.toLowerCase()) {
       throw new Error(ErrorTypes.TheSameUserTransfer);
     }
@@ -95,7 +96,7 @@ export default class TransactionService {
       .getUserByUserName(userC.userName);
 
     const userToDebit = await this.userDB
-      .getUserByUserName(user.user_name);
+      .getUserByUserName(userFromToken.user_name);
     
     if (!userToCredit || !userToDebit) throw Error(ErrorTypes.EntityNotFound);
     

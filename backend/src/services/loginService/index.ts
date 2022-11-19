@@ -10,14 +10,20 @@ export default class LoginService {
   private JWT = { Generate, Validate };
 
   public async login(userDTO: User) {
-    const results = await this.userDB.getUserByUserName(userDTO.user_name);
-    if (!results) throw Error(ErrorTypes.EntityNotFound);
+    const userData = await this.userDB.getUserByUserName(userDTO.user_name);
+    if (!userData) throw Error(ErrorTypes.EntityNotFound);
 
-    checkPassword(userDTO.password, results.password);
+    checkPassword(userDTO.password, userData.password);
 
-    const token = this.JWT.Generate.createToken(results);
+    const userToToken = {
+      id: userData.id,
+      user_name: userData.user_name,
+      account_id: userData.account_id,
+    };
 
-    return { ...results, token };
+    const token = this.JWT.Generate.createToken(userToToken);
+
+    return { ...userData, token };
   }
 
   public async loginValidate(token: string) {

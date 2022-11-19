@@ -7,7 +7,7 @@ export default class Account {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   
-  @Column('decimal', {default: 100})
+  @Column({ default: 10000 })
   balance: number;
 
   @Column('text', {default: '001'})
