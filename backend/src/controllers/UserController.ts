@@ -7,7 +7,8 @@ export default class UserController {
   public saveNewUser = async (req: Request, res: Response) => {
     const { body } = req;
     
-    const results = await this.service.saveNewUser(body);
+    const results = await this.service
+      .saveNewUser({ ...body, user_name: body.userName });
     res.status(201).json(results);
   };
 

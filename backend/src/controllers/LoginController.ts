@@ -7,7 +7,8 @@ export default class LoginController {
   public login = async (req: Request, res: Response) => {
     const { body } = req;
     
-    const results = await this.service.login(body);
+    const results = await this.service
+      .login({ ...body, user_name: body.userName });
     res.status(200).json(results);
   };
 

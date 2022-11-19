@@ -47,7 +47,9 @@ export default class TransactionService {
         value: userNameAndAmount.amount,
       });
     
-    await this.tryToTransfer(transactionToSave, users);
+    const transactionDone = await this.tryToTransfer(transactionToSave, users);
+    
+    return transactionDone;
   }
 
   private async tryToTransfer(TToSave: Transaction, users: IUsers) {    
@@ -55,30 +57,23 @@ export default class TransactionService {
     await this.queryRunner.startTransaction();
     try {
       const transactionResults = await this.transactionDB.save(TToSave);
-      console.log(users);
-      
-      const debitBalance = users.userD.account.balance
-        - transactionResults.value;
+
       await this.accountDB.update(
         { id: users.userD.account_id },
-        { balance: debitBalance },
+        { balance: users.userD.account.balance - transactionResults.value },
       );
-
-      const creditBalance = users.userC.account.balance
-        + transactionResults.value;
-      console.log(creditBalance);
-      
+        
       await this.accountDB.update(
         { id: users.userC.account_id },
-        { balance: creditBalance },
+        { balance: users.userC.account.balance + transactionResults.value },
       );
-
+          
       await this.queryRunner.commitTransaction();
       return transactionResults;
     } catch (err) {
       await this.queryRunner.rollbackTransaction();
       throw Error('Transaction fail');
-    } 
+    }
   }
 
   private async validateAndGetUsers(
