@@ -26,7 +26,6 @@ export default class UserService {
 
   public async getUserById(id: string) {
     const results = await this.userDB.findOneBy({ id });
-    console.log('by id', results);
 
     if (!results) throw Error(ErrorTypes.EntityNotFound);
 
@@ -36,7 +35,6 @@ export default class UserService {
   public async getUserByUserName(userName: string) {
     const results = await this.userDB
       .findOne({ where: { user_name: ILike(userName) } });
-    console.log('by name', results);
     
     return results;
   }

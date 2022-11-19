@@ -23,7 +23,7 @@ export default class LoginService {
   public async loginValidate(token: string) {
     const user = this.JWT.Validate.validateToken(token);
 
-    const results = this.userDB.getUserById(user.data.id);
+    const results = await this.userDB.getUserById(user.id);
 
     return results;
   }
