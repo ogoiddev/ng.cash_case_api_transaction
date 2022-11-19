@@ -10,7 +10,7 @@ export default class LoginService {
   private JWT = { Generate, Validate };
 
   public async login(userDTO: User) {
-    const results = await this.userDB.getUserByUserName(userDTO.userName);
+    const results = await this.userDB.getUserByUserName(userDTO.user_name);
     if (!results) throw Error(ErrorTypes.EntityNotFound);
 
     checkPassword(userDTO.password, results.password);

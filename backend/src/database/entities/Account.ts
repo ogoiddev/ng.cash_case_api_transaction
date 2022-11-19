@@ -13,15 +13,15 @@ export default class Account {
   @Column('text', {default: '001'})
   agency: string;
 
-  @Column({ type: 'text' , unique: true})
+  @Column({ type: 'text' })
   number: string;
 
   @OneToOne(() => User, user => user.account)
-  account: Account;
+  account: User;
 
-  @OneToMany(() => Transaction, t => t.debit)
-  debit: Account[];
+  @OneToMany(() => Transaction, t => t.debitAccount, { eager: true })
+  debitAccountId: Transaction[];
   
-  @OneToMany(() => Transaction, t => t.credit)
-  credit: Account[];
+  @OneToMany(() => Transaction, t => t.creditAccount, { eager: true })
+  creditAccountId: Transaction[];
 }

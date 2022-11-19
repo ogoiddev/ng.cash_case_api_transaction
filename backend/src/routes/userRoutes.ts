@@ -3,12 +3,12 @@ import factory from '../factories/index';
 
 const userRoute = Router();
 
-userRoute.post('/users', factory.userHandler.saveNewUser);
+userRoute.post('/', factory.userHandler.saveNewUser);
 
-userRoute.get('/users', factory.userHandler.getAllUsers);
+userRoute.get('/', factory.userHandler.getAllUsers);
 
-userRoute.get('/query/users/name', factory.userHandler.getUserByUserName);
+userRoute.get('/query/name', factory.userHandler.getUserByUserName);
 
-userRoute.get('/users/:id', factory.userHandler.getUserById);
+userRoute.get('/:id', factory.userHandler.getUserById);
 
 export default userRoute;

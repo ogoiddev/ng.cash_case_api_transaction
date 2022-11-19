@@ -4,6 +4,8 @@ export enum ErrorTypes {
   UserAlreadyExists = 'UserAlreadyExists',
   InvalidPasswordBcrypt = 'InvalidPasswordBcrypt',
   InvalidTokenTypeOrEmpty = 'InvalidTokenTypeOrEmpty',
+  TheSameUserTransfer = 'TheSameUserTransfer',
+  InsufficientBalance = 'InsufficientBalance',
 }
 
 type ErrorResponseObject = {
@@ -35,6 +37,14 @@ export const errorCatalog: ErrorCatalog = {
   UserAlreadyExists: {
     error: 'Nome de usuário ja cadastrado',
     httpStatus: 400,
+  },
+  TheSameUserTransfer: {
+    error: 'Nao e possível transferir para o próprio usuário',
+    httpStatus: 400,
+  },
+  InsufficientBalance: {
+    error: 'Saldo Insuficiente',
+    httpStatus: 403,
   },
   
 };

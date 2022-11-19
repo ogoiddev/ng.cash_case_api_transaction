@@ -11,13 +11,17 @@ export default class Transaction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Account, account => account.account, { eager: true })
+  @Column()
+  debited_account_id: string
+  @ManyToOne(() => Account, account => account.account)
   @JoinColumn({ name: 'debited_account_id' })
-  debit: Account;
+  debitAccount: Account;
 
-  @ManyToOne(() => Account, account => account.account, { eager: true })
+  @Column()
+  credited_account_id: string
+  @ManyToOne(() => Account, account => account.account)
   @JoinColumn({ name: 'credited_account_id' })
-  credit: Account;
+  creditAccount: Account;
 
   @Column({ type: "decimal" })
   value: number;
