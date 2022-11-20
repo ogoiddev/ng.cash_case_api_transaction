@@ -1,13 +1,14 @@
+import { ButtonHTMLAttributes } from "react";
 import LogButtonContainer from "./styles";
 
-interface IProps {
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonName: string;
 }
 
-export default function LogButton(props: IProps) {
+export default function LogButton(props: IButtonProps) {
   return (
     <LogButtonContainer
-      type="submit"
+      {...props}
     >
       {props.buttonName}
     </LogButtonContainer>

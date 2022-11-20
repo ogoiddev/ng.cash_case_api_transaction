@@ -1,18 +1,14 @@
+import { InputHTMLAttributes } from "react";
 
-interface IProps {
-  type: string;
-  name: string;
-  placeHolder: string;
-
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  textLabel: string
 }
 
-export default function LogInput(props: IProps) {
+export default function LogInput(props: InputProps) {
   return (
-    <label htmlFor={props.name}>{props.name}
+    <label htmlFor={props.name}>{props.textLabel}
       <input 
-        type={props.type}
-        placeholder={props.placeHolder}
-      
+        {...props}      
       />
     </label>
   );
