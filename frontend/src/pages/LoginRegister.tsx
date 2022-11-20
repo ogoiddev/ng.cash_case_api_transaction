@@ -10,19 +10,26 @@ export default function LoginRegister() {
   return (
     <LoginRegisterContainer>
       <div className="forms-container">
-
+        {isLoginSelected ? <h2>Ola, bem vindo a sua conta</h2> : <h2>Criar conta e aproveitar o mundo com NG.Cash</h2>}
         <div className="toggle-login-register">
           <LogButton
             onClick={() => setLoginSelected(true)}
+            disabled={isLoginSelected}
             buttonName="Login"
-            type="button" />
+            id="Login"
+            type="button"
+          />
+            
           <LogButton
             onClick={() => setLoginSelected(false)}
-            buttonName="Criar Conta"
-            type="button" />
+            disabled={!isLoginSelected}
+            buttonName="Cadastrar"
+            
+            type="button"
+          />
         </div>
 
-        <div className="form">
+        <div className="form-ctn">
           { isLoginSelected ? <Login/> : <Register/> }
         </div>
       </div>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const RegisterContainer = styled.div`
+const RegisterContainer = styled.form`
   height: 100%;
   width: 100%;
 
@@ -10,6 +10,13 @@ const RegisterContainer = styled.div`
   align-items: center;
 
   gap: 8px;
+
+  span {
+    min-height: fit-content;
+    opacity: 0.9;
+    width: 100%;
+    padding: 8px;
+  }
 `;
 
 export default RegisterContainer;

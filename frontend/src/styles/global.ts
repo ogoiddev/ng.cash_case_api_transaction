@@ -38,7 +38,7 @@ export default createGlobalStyle`
 
   body {
     font-size: 16px;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     width: 100vw;
     overflow-x: hidden;
     height: fit-content;

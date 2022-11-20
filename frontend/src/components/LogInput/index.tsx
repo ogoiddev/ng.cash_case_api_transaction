@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import { LabelInputContainer } from "./styles";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   textLabel: string
@@ -6,10 +7,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export default function LogInput(props: InputProps) {
   return (
-    <label htmlFor={props.name}>{props.textLabel}
-      <input 
+    <LabelInputContainer htmlFor={props.name}><p>{props.textLabel}</p>
+      <input
         {...props}      
       />
-    </label>
+    </LabelInputContainer>
   );
 }

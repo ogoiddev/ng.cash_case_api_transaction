@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoginContainer = styled.div`
+const LoginContainer = styled.form`
   height: 100%;
   width: 100%;
 

@@ -1,5 +1,5 @@
 export default {
-  TITLE: 'light',
+  TITLE: 'dark',
 
   COLORS: {
     PRIMARY: '#FCFCFC',
