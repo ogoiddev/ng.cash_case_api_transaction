@@ -8,7 +8,7 @@ docker compose up -d
 - password = Test1234
 
 
-* Voce vai precisar de ter instalado o Docker e Docker Compose
+* Voce vai precisar de ter instalado o Docker e Docker Compose.
 _______________________________________________________
 
 ## Setup Front-end
@@ -31,6 +31,15 @@ npm create vite@latest
 |  ✔ Select a variant: › TypeScript
 
 
+## [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start)
+
+## [Styled-components](https://styled-components.com/docs/api#typescript)
+```
+npm install --save styled-components
+```
+```
+npm install --save-dev @types/styled-components
+```
 _______________________________________________________
 
 ## Setup inicial do Back-end

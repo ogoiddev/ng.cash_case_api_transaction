@@ -1,0 +1,17 @@
+export default {
+  TITLE: 'light',
+
+  COLORS: {
+    PRIMARY: '#FCFCFC',
+    CONTRAST: '#3131D3',
+    
+    TEXT_PRIMARY: '#040f0f',
+    TEXT_CONTRAST: '#FCFCFC',
+
+    BUTTON_BACK_PRIMARY: '#3131D3',
+    BUTTON_BACK_CONTRAST: '#FCFCFC',
+
+    BUTTON_TEXT_PRIMARY: '#FCFCFC',
+    BUTTON_TEXT_CONTRAST: '#3131D3',
+  }
+};
