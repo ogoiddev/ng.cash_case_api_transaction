@@ -1,34 +1,33 @@
 import styled from "styled-components";
 
-const LogButtonContainer = styled.button.attrs(props => props)`
+const LogButtonContainer = styled.button.attrs(attrProps => attrProps)`
   min-height: 43px;
   min-width: 100px;
 
   flex: 1;
 
   text-align: center;
-  border: 1px solid transparent;
+  border: 1px solid ${attrProps => attrProps.theme.COLORS.CONTRAST };
   text-decoration: none;
   
   transition: all 0.3s ease-in-out;
   padding: 8px 16px;
-  margin: ${props => props.type === 'submit' ? "12px" : "0"};
+  margin: ${attrProps => attrProps.type === 'submit' ? "12px" : "0"};
 
   font-size: 1.2rem;
   font-weight: 600;
 
   border-radius: 4px;
   
-  background: ${props => props.type === 'submit' ? props.theme.COLORS.BUTTON_BACK_PRIMARY : "transparent"};
-  color: ${props => props.type === 'submit' ? props.theme.COLORS.BUTTON_TEXT_PRIMARY : props.theme.COLORS.BUTTON_TEXT_CONTRAST};
-
-  
+  background: ${attrProps => attrProps.type === 'submit' ? 'orange' : attrProps.theme.COLORS.CONTRAST};
+  color: ${ attrProps => attrProps.theme.COLORS.PRIMARY };
   
   :hover {
-    border: 1px solid  ${({ theme }) => theme.COLORS.BUTTON_BACK_PRIMARY};
-    filter: ${props => props.type === 'submit' ? "brightness(1.2)" : "brightness(1)"};
+    border: 1px solid  ${({ theme }) => theme.COLORS.PRIMARY};
+    filter: ${attrProps => attrProps.type === 'submit' ? "brightness(1.2)" : "brightness(1)"};
     :disabled {
       filter: brightness(1);
+      background: ${attrProps => attrProps.theme.COLORS.CONTRAST };
     }
   }
 
@@ -37,8 +36,8 @@ const LogButtonContainer = styled.button.attrs(props => props)`
   }
 
   :disabled {
-    background: ${({theme}) => theme.COLORS.BUTTON_BACK_PRIMARY};
-    color: ${({theme}) => theme.COLORS.BUTTON_TEXT_PRIMARY};
+    background: ${attrProps => attrProps.type === 'submit' ? 'orange' : attrProps.theme.COLORS.CONTRAST};
+    color: ${attrProps => attrProps.type === 'submit' ? 'gray' : attrProps.theme.COLORS.CONTRAST};
   }
 
 `;

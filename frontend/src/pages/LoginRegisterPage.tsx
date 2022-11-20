@@ -2,15 +2,15 @@ import { useState } from "react";
 import LogButton from "../components/LogButton";
 import Login from "../components/Login";
 import Register from "../components/Register";
-import { LoginRegisterContainer } from "./pageStyles/LoginRegister";
+import { LoginRegisterPageContainer } from "./pageStyles/LoginRegister";
 
-export default function LoginRegister() {
+export default function LoginRegisterPage() {
   const [isLoginSelected, setLoginSelected] = useState(true);
 
   return (
-    <LoginRegisterContainer>
+    <LoginRegisterPageContainer>
       <div className="forms-container">
-        {isLoginSelected ? <h2>Ola, bem vindo a sua conta</h2> : <h2>Criar conta e aproveitar o mundo com NG.Cash</h2>}
+        {isLoginSelected ? <h2>Ola, bora ver como esta sua conta NG.cash</h2> : <h2>Criar conta e aproveitar o mundo com NG.Cash</h2>}
         <div className="toggle-login-register">
           <LogButton
             onClick={() => setLoginSelected(true)}
@@ -33,6 +33,6 @@ export default function LoginRegister() {
           { isLoginSelected ? <Login/> : <Register/> }
         </div>
       </div>
-    </LoginRegisterContainer>
+    </LoginRegisterPageContainer>
   );
 }

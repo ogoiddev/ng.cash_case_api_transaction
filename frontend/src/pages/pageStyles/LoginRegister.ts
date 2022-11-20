@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const LoginRegisterContainer = styled.div`
+export const LoginRegisterPageContainer = styled.div`
   min-height: 100vh;
   width: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background: ${ props => props.theme.COLORS.PRIMARY };
 
   
   
@@ -16,8 +18,8 @@ export const LoginRegisterContainer = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    background: ${({theme}) => theme.COLORS.CONTRAST}10;
-    box-shadow: 2px 4px 8px ${({theme}) => theme.COLORS.CONTRAST}50;
+    background:  ${ props => props.theme.COLORS.CONTRAST };
+    box-shadow: 0px 0px 2px ${({theme}) => theme.COLORS.CONTRAST};
 
     min-height: fit-content;
     max-height: 80vh;
@@ -29,9 +31,10 @@ export const LoginRegisterContainer = styled.div`
 
     h2 {
       margin: 32px 16px;
-      text-align: center;
+      text-align: left;
       min-height: fit-content;
       height: 20%;
+      color: ${ props => props.theme.COLORS.PRIMARY };
     }
     
     .toggle-login-register {
@@ -47,6 +50,10 @@ export const LoginRegisterContainer = styled.div`
         border-radius: 4px 4px 0 0;
         font-size: 1.2rem;
         font-weight: 500;
+
+        :disabled {
+          background: ${ props => props.theme.COLORS.PRIMARY };
+        }
       }
 
         :after {
@@ -56,7 +63,7 @@ export const LoginRegisterContainer = styled.div`
           bottom: 0px;
           height: 0;
           width: 100%;
-          border-bottom: 8px solid ${({ theme }) => theme.COLORS.BUTTON_BACK_PRIMARY};
+          border-bottom: 4px solid ${ ({ theme }) => theme.COLORS.PRIMARY };
           border-radius: 50px 50px 0 0;
         }
       

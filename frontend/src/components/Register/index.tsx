@@ -1,56 +1,69 @@
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 import LogButton from "../LogButton";
 import LogInput from "../LogInput";
 import RegisterContainer from "./styles";
 
 export default function Register() {
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm({
-    mode: 'onChange',
-  });
+  const [userName, setUserName] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [isDisable, setIsDisable] = useState(true)
 
+
+  useEffect(() => {
+    if (password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,60}$)/g) && userName.length > 2) {
+      setIsDisable(false)
+    } else {
+      setIsDisable(true)
+    }
+  }, [userName, password])
+
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    if (e.target.name === 'userName') {
+      setUserName(e.target.value);
+    }
+    if (e.target.name === 'password') {
+      setPassword(e.target.value);
+    }
+  }
   return (
     <RegisterContainer>
 
       <LogInput
         type="text"
+        name="userName"
         placeholder="Escolha um nome de usuário"
         textLabel="Usuário"
         minLength={3}
-        { ...register('userName', {
-                required: 'Required',
-                pattern: {
-                  value: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,60}$)/g,
-                  message: 'invalid user name',
-                },
-              }) }
-        aria-invalid={ errors.mail ? 'true' : 'false' }
+        maxLength={20}
+        value={userName}
+        onChange={handleUserNameChange}
       />
 
       <span>Seu nome de usuário deve ter no mínimo 3 caracteres e no máximo 20</span>
 
       <LogInput
         type="password"
+        name="password"
         placeholder="Sua Senha"
         textLabel="Senha"
-        { ...register('password', {
-                required: true,
-                minLength: {
-                  value: 8,
-                  message: 'Sua senha deve ter no mínimo 8 e no máximo 20 caracteres',
-                },
-              }) }
+        minLength={8}
+        maxLength={20}
+        value={password}
+        onChange={handleUserNameChange}
       />
       
-      {errors.password && <p role="alert">{errors.password?.message}</p>}
-
         <span>Sua senha deve conter:<br/>
           * 8 caracteres no mínimo e 20 máximo;<br/>
           * Pelo menos 1 letra maiúscula;<br/>
           * Pelo menos 1 letra minuscula;<br/>
           * Pelo menos 1 numero.<br/>
         </span>
+        
+      <LogButton
+        disabled={isDisable}
+        type="submit"
+        buttonName="Criar minha conta NG.Cash" />
 
-        <LogButton type="submit" buttonName="Criar minha conta NG.Cash"/>
 
     </RegisterContainer>
   );
