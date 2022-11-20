@@ -76,6 +76,7 @@ export default class UserService {
       await this.queryRunner.commitTransaction();
     } catch (err) {
       await this.queryRunner.rollbackTransaction();
+      throw Error(`'Create new user fail', ${err}`);
     }
   }
 }

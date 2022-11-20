@@ -23,7 +23,7 @@ export default class Transaction {
   @JoinColumn({ name: 'credited_account_id' })
   creditAccount: Account;
 
-  @Column({ type: "decimal" })
+  @Column()
   value: number;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(4)" })
