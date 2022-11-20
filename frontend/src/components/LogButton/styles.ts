@@ -20,7 +20,7 @@ const LogButtonContainer = styled.button.attrs(attrProps => attrProps)`
   border-radius: 4px;
   
   background: ${attrProps => attrProps.type === 'submit' ? 'orange' : attrProps.theme.COLORS.CONTRAST};
-  color: ${ attrProps => attrProps.theme.COLORS.PRIMARY };
+  color: ${ attrProps => attrProps.theme.COLORS.CONTRAST };
   
   :hover {
     border: 1px solid  ${({ theme }) => theme.COLORS.PRIMARY};

@@ -11,6 +11,7 @@ const RegisterContainer = styled.form`
 
   gap: 8px;
 
+
   span {
     min-height: fit-content;
     opacity: 0.9;
