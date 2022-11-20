@@ -19,6 +19,7 @@ export default class LoginService {
       id: userData.id,
       user_name: userData.user_name,
       account_id: userData.account_id,
+      role: userData.role,
     };
 
     const token = this.JWT.Generate.createToken(userToToken);

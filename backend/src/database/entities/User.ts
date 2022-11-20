@@ -21,6 +21,9 @@ export default class User {
   @Matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=^.{8,60}$)/g)
   password: string;
 
+  @Column({ default: 'user', nullable: false })
+  role: string;
+
   @Column()
   account_id: string
   @OneToOne(() => Account, account => account.account, { eager: true })

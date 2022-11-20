@@ -12,8 +12,10 @@ export default class UserController {
     res.status(201).json(results);
   };
 
-  public getAllUsers = async (req: Request, res: Response) => { 
-    const results = await this.service.getAllUsers();
+  public getAllUsers = async (req: Request, res: Response) => {
+    const token = req.headers.authorization || '';
+
+    const results = await this.service.getAllUsers(token);
     res.status(200).json(results);
   };
 

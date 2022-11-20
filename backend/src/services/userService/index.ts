@@ -8,6 +8,7 @@ import { ErrorTypes } from '../../errors/catalog';
 import { cryptPassword } from '../../utils/Bcrypt/services';
 import accountNumberGenerate from './generateAccountNumber';
 import Validate from './validations';
+import JWT from '../../utils/JWT/JWT.Validate';
 
 export default class UserService {
   private userDB = UserRepository;
@@ -19,7 +20,11 @@ export default class UserService {
     return results;
   }
 
-  public async getAllUsers() {
+  public async getAllUsers(token: string) {
+    const userFromToken = JWT.validateToken(token);
+    console.log(userFromToken);
+    if (userFromToken.role !== 'admBoss') throw Error('Only the boss see it');
+    
     const results = await this.userDB.find();
     return results;
   }

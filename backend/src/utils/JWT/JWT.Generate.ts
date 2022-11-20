@@ -4,6 +4,7 @@ interface IUserToken {
   id: string;
   'user_name': string;
   'account_id': string
+  role: string;
 }
 class JWT {
   static createToken(user: IUserToken) {
