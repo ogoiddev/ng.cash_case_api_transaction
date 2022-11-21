@@ -3,7 +3,7 @@ import factory from '../factories/index';
 
 const userRoute = Router();
 
-userRoute.post('/', factory.userHandler.saveNewUser);
+userRoute.post('/register', factory.userHandler.saveNewUser);
 
 userRoute.get('/', factory.userHandler.getAllUsers);
 

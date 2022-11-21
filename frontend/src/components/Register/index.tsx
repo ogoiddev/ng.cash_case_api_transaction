@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import axios, { AxiosError } from "axios"
+import { useContext, useEffect, useState } from "react";
+import { saveTokenOnLocalStorage } from "../../Context/LocalStorage";
+import { UserContext } from "../../Context/UserContext";
+import { IUserLogDTO, loginToToken } from "../../services/registerNewUserApi";
 import LogButton from "../LogButton";
 import LogInput from "../LogInput";
 import RegisterContainer from "./styles";
 
 export default function Register() {
-  const [userName, setUserName] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [isDisable, setIsDisable] = useState(true)
+  const [userName, setUserName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [isDisable, setIsDisable] = useState(true);
+  const {setUserData} = useContext(UserContext);
 
 
   useEffect(() => {
@@ -25,8 +30,32 @@ export default function Register() {
       setPassword(e.target.value);
     }
   }
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const dataForm = new FormData(e.currentTarget);
+    const DTO = {
+      userName: dataForm.get('userName'),
+      password: dataForm.get('password')
+    }
+
+    const data = await loginToToken(DTO as IUserLogDTO)
+
+    if (data instanceof AxiosError) {
+      alert(`Sua requisição falhou ==> ${data.response?.data.error}`)
+    }
+
+    setUserData(data)
+    console.log(data);
+      
+    saveTokenOnLocalStorage('token', data.token)
+
+
+
+  }
   return (
-    <RegisterContainer>
+    <RegisterContainer onSubmit={handleRegister}>
 
       <LogInput
         type="text"

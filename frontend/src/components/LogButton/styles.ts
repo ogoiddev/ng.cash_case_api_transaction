@@ -20,23 +20,23 @@ const LogButtonContainer = styled.button.attrs(attrProps => attrProps)`
   border-radius: 4px;
   
   background: ${attrProps => attrProps.type === 'submit' ? 'orange' : attrProps.theme.COLORS.CONTRAST};
-  color: ${ attrProps => attrProps.theme.COLORS.CONTRAST };
+  color: ${attrProps => attrProps.type === 'submit' ? attrProps.theme.COLORS.CONTRAST : attrProps.theme.COLORS.PRIMARY};
+    
   
   :hover {
     border: 1px solid  ${({ theme }) => theme.COLORS.PRIMARY};
     filter: ${attrProps => attrProps.type === 'submit' ? "brightness(1.2)" : "brightness(1)"};
     :disabled {
       filter: brightness(1);
-      background: ${attrProps => attrProps.theme.COLORS.CONTRAST };
     }
   }
-
+  
   ::active {
     transform: translate(1px, 1px);
   }
 
   :disabled {
-    background: ${attrProps => attrProps.type === 'submit' ? 'orange' : attrProps.theme.COLORS.CONTRAST};
+    background: ${attrProps => attrProps.type === 'submit' ? 'orange' : attrProps.theme.COLORS.PRIMARY};
     color: ${attrProps => attrProps.type === 'submit' ? 'gray' : attrProps.theme.COLORS.CONTRAST};
   }
 

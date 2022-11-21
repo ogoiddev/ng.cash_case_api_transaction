@@ -35,7 +35,7 @@ export const errorCatalog: ErrorCatalog = {
     httpStatus: 400,
   },
   UserAlreadyExists: {
-    error: 'Nome de usuário ja cadastrado',
+    error: 'Nome de usuário ja cadastrado, escolha outro nome por favor',
     httpStatus: 400,
   },
   TheSameUserTransfer: {
