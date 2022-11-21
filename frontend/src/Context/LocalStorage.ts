@@ -3,12 +3,12 @@ export const saveTokenOnLocalStorage = (key: string, data: string) => localStora
 
 export const getTokenFromLocalStorage = (key: string) => {
   
-  const data = localStorage.getItem(key) || undefined
+  const data = localStorage.getItem(key) || undefined;
     
   if (!data) {
     return undefined;
   }
 
-  return data
+  return JSON.parse(data)
   
 }

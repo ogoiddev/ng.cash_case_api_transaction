@@ -22,7 +22,7 @@ export default class UserService {
 
   public async getAllUsers(token: string) {
     const userFromToken = JWT.validateToken(token);
-    console.log(userFromToken);
+
     if (userFromToken.role !== 'admBoss') throw Error('Only the boss see it');
     
     const results = await this.userDB.find();
@@ -66,7 +66,6 @@ export default class UserService {
     try {
       const setAccountDataObj = this.accountDB
         .create({ number: accountNumber });
-      console.log(setAccountDataObj);
 
       const accountCreated = await this.accountDB.save(setAccountDataObj);
 

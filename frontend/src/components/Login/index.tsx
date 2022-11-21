@@ -37,8 +37,6 @@ export default function Login() {
     const userToSaveData = await loginToToken({ userName, password })
     
     if (userToSaveData instanceof AxiosError) {
-      console.log(userToSaveData);
-      
       return alert(`Sua requisição falhou ==> ${userToSaveData.response?.data.error}`)
     }
     

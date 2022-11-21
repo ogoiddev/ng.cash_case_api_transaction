@@ -14,6 +14,15 @@ export default function Home() {
   const { userData, setUserData } = useContext(UserContext);
   const navigate = useNavigate()
 
+  useEffect(() => {
+    (async () => {
+      if (!getTokenFromLocalStorage('token')) {
+        navigate('/login/register')
+      }
+    })()
+  })
+
+  
   return (
     <HomeContainer>
       <PerfilMenuCard>

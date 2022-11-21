@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { LOGIN_VALIDATE_URL } from "./endpoints"
 
 
@@ -8,19 +8,10 @@ export interface IUserLogDTO {
 }
 
 
-export const loginValidate = async (token: string) => {
-  console.log(token);
+export const loginValidate = async (AuthStr: string) => {
   
-  try {
-    const { data } = await axios.get((LOGIN_VALIDATE_URL), {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    return data
-    
-  } catch (AxiosError) {
-    return AxiosError
-  }
-
+return axios.get(LOGIN_VALIDATE_URL,
+  { headers: { Authorization: AuthStr } })
+  .then(response => response.data)
+  .catch((AxiosError) => AxiosError)
 }

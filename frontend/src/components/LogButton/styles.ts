@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const LogButtonContainer = styled.button.attrs(attrProps => attrProps)`
   min-height: 43px;
+  max-height: 53px;
   min-width: 100px;
 
   flex: 1;

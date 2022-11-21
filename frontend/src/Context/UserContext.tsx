@@ -68,20 +68,16 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
   useEffect(() => {
     if (getTokenFromLocalStorage('token') && !userData.id.length) {
       (async () => {
-        const token = getTokenFromLocalStorage('token') || '';
-        console.log('context', token);
-        
+        const token = getTokenFromLocalStorage('token');        
         
         const userId = await loginValidate(token);
-
-        console.log(userId);
+        if (userId instanceof AxiosError) {
+          return alert(`Sua requisição falhou (Token Invalid)==> ${userId.response?.data.error}`)
+        }
 
         const userToSaveData = await getUserByIdApi(userId);
-
-        console.log(userToSaveData);
-        if (userToSaveData instanceof AxiosError || userId instanceof AxiosError) {
-          
-          return alert(`Sua requisição falhou ==> ${userToSaveData.response?.data.error}`)
+        if (userToSaveData instanceof AxiosError) {
+          return alert(`Sua requisição falhou (User Not Found)==> ${userToSaveData.response?.data.error}`)
         }
   
         return setUserData(userToSaveData);

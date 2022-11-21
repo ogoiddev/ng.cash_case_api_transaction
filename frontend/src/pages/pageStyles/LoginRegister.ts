@@ -22,12 +22,15 @@ export const LoginRegisterPageContainer = styled.div`
     box-shadow: 0px 0px 2px ${({theme}) => theme.COLORS.CONTRAST};
 
     min-height: fit-content;
-    max-height: 80vh;
     width: 85%;
     min-width: 320px;
     max-width: 500px;
 
-    padding: 0 16px;
+    padding: 0 12px;
+
+    @media (max-width: 420px) {
+      width: 100%;
+    }
 
     h2 {
       margin: 32px 16px;
@@ -73,7 +76,7 @@ export const LoginRegisterPageContainer = styled.div`
   .form-ctn {
     display: flex;
     justify-content: center;
-    height: fit-content;
+    min-height: fit-content;
     width: 100%;
     padding: 16px;
   }
