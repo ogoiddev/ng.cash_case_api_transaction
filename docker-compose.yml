@@ -1,9 +1,16 @@
 version: '3'
 
 services:
+  frontend:
+    container_name: app-frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    command: npm run dev
+
   backend:
     container_name: app_backend
-    build: ./
+    build: ./backend
     ports:
       - 3001:3001
     command: npm run dev

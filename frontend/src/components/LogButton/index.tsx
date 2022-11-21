@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import LogButtonContainer from "./styles";
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  buttonName: string;
+  buttonname: string;
 }
 
 export default function LogButton(props: IButtonProps) {
@@ -10,7 +10,7 @@ export default function LogButton(props: IButtonProps) {
     <LogButtonContainer
       {...props}
     >
-      {props.buttonName}
+      {props.buttonname}
     </LogButtonContainer>
   );
 }

@@ -15,7 +15,7 @@ export default function LoginRegisterPage() {
           <LogButton
             onClick={() => setLoginSelected(true)}
             disabled={isLoginSelected}
-            buttonName="Login"
+            buttonname="Login"
             id="Login"
             type="button"
           />
@@ -23,8 +23,7 @@ export default function LoginRegisterPage() {
           <LogButton
             onClick={() => setLoginSelected(false)}
             disabled={!isLoginSelected}
-            buttonName="Cadastrar"
-            
+            buttonname="Cadastrar"
             type="button"
           />
         </div>

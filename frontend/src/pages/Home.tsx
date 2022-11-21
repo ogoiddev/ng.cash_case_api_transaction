@@ -1,32 +1,58 @@
-import { Bell, Eye, EyeClosed } from "phosphor-react";
-import { useContext } from "react";
+import { AxiosError } from "axios";
+import { Bell, Eye, EyeClosed, SignOut } from "phosphor-react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getTokenFromLocalStorage } from "../Context/LocalStorage";
 import { UserContext } from "../Context/UserContext";
+import { loginValidate } from "../services/loginValidate";
 import { BalanceCard, HomeContainer, PerfilMenuCard } from "./pageStyles/Home";
+import Transactions from "./Transactions";
 
 
 export default function Home() {
-  const { userData } = useContext(UserContext)
-  
+  const [showBalance, setShowBalance] = useState(false);
+  const { userData, setUserData } = useContext(UserContext);
+  const navigate = useNavigate()
+
   return (
     <HomeContainer>
       <PerfilMenuCard>
         <div className="left-side">
-          <span>{userData.user_name}</span>
-          <span>{userData.account.agency}</span>
-          <span>{userData.account.number}</span>
+          <span className="user-name">{`Ola, ${userData.user_name}`}</span>
+          <span>{`Agencia: ${userData.account.agency}`}</span>
+          <span>{`Conta: ${userData.account.number}`}</span>
         </div>
 
         <div className="right-side">
-          <span><Bell size={32}/></span>
-          <span><EyeClosed/></span>
-          <span><Eye/></span>
+          {
+            showBalance
+            ? <span className="icons-header">
+                  <EyeClosed weight="regular" size={28} onClick={() => setShowBalance(!showBalance)}/>
+                </span>
+              : <span className="icons-header">
+                  <Eye weight="regular" size={28} onClick={() => setShowBalance(!showBalance)}/>
+                </span>
+          }
+          <span className="icons-header"><Bell weight="regular" size={28}/></span>
+          <span className="icons-header">
+            <SignOut
+              onClick={() => {
+                localStorage.removeItem('token')
+                navigate('/login/register')
+              }}
+              weight="regular"
+              size={28}
+            />
+          </span>
         </div>
       </PerfilMenuCard>
       <BalanceCard>
-        <span>{userData.account.balance}</span>
-        <span>Ultima transferência: {userData.account.[-1]}</span>
-        <span>Ultimo debito em conta: {userData.account.debitAccountId[-1]}</span>
+        <span className="balance">{`Saldo em conta: ${ showBalance ? `R$ ${userData.account.balance / 100}` : '******'}`}</span>
+        <span>{`Ultima transferência: ${showBalance ? userData.account.debitAccountHistory[-1] || '- - -' : '******'}`}</span>
+        <span>{`Ultimo credito em conta: ${showBalance ? userData.account.creditAccountHistory[-1] || '- - -': '******'}`}</span>
       </BalanceCard>
+
+      <Transactions/>
     </HomeContainer>
     );
 }

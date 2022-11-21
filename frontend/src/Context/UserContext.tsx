@@ -1,4 +1,8 @@
-import { createContext, ReactNode, useState } from 'react';
+import { AxiosError } from 'axios';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { getUserByIdApi } from '../services/getUserByIdApi';
+import { loginValidate } from '../services/loginValidate';
+import { getTokenFromLocalStorage } from './LocalStorage';
 
 type UserContextProps = {
   children: ReactNode;
@@ -15,8 +19,8 @@ const IUserDataType = {
     balance: 0,
     agency: '',
     number: '',
-    debitAccountId: [{} as ITransaction],
-    creditAccountId: [{} as ITransaction],
+    debitAccountHistory: [{} as ITransaction],
+    creditAccountHistory: [{} as ITransaction],
   },
   token: '',
 }
@@ -40,8 +44,8 @@ export type IUserDataType = {
     balance: number;
     agency: string;
     number: string;
-    debitAccountId: ITransaction[] | [];
-    creditAccountId: ITransaction[] | [];
+    debitAccountHistory: ITransaction[] | [];
+    creditAccountHistory: ITransaction[] | [];
   },
   token: string
 }
@@ -61,7 +65,29 @@ export const UserContext = createContext<UserContextType>(initialValue);
 export const UserContextProvider = ({ children }: UserContextProps) => {
   const [userData, setUserData] = useState(initialValue.userData);
 
+  useEffect(() => {
+    if (getTokenFromLocalStorage('token') && !userData.id.length) {
+      (async () => {
+        const token = getTokenFromLocalStorage('token') || '';
+        console.log('context', token);
+        
+        
+        const userId = await loginValidate(token);
+
+        console.log(userId);
+
+        const userToSaveData = await getUserByIdApi(userId);
+
+        console.log(userToSaveData);
+        if (userToSaveData instanceof AxiosError || userId instanceof AxiosError) {
+          
+          return alert(`Sua requisição falhou ==> ${userToSaveData.response?.data.error}`)
+        }
   
+        return setUserData(userToSaveData);
+      })()
+    }
+  }, [])
 
   return (
     <UserContext.Provider value={ {userData, setUserData} }>

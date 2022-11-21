@@ -1,13 +1,9 @@
-## Para rodar o projeto localmente clone este repositório e execute o comando:
+## Para rodar o projeto localmente clone este repositório acesse a pasta e execute o comando:
 ```
 docker compose up -d
 ```
 
-* Crie seu login ou utilize o **Boss access** para navegar:
-- userName = Boss
-- password = Test1234
-
-
+* Crie seu login para navegar!
 * Voce vai precisar de ter instalado o Docker e Docker Compose.
 _______________________________________________________
 

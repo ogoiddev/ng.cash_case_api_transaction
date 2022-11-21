@@ -8,7 +8,7 @@ export const LoginRegisterPageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: ${ props => props.theme.COLORS.PRIMARY };
+  background: ${ props => props.theme.COLORS.PRIMARY }50;
 
   
   

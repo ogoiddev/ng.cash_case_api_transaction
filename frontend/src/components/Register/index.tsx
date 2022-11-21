@@ -25,7 +25,7 @@ export default function Register() {
     }
   }, [userName, password])
 
-  const handleUserNameChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+  const handleFormChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (e.target.name === 'userName') {
       setUserName(e.target.value);
     }
@@ -50,7 +50,7 @@ export default function Register() {
     }
     
     const userToSaveData = await loginToToken({ userName: userName, password: password })
-    
+
     setUserData(userToSaveData)
     saveTokenOnLocalStorage('token', userToSaveData.token)
 
@@ -59,17 +59,17 @@ export default function Register() {
 
 
   return (
-    <RegisterContainer onSubmit={handleRegister} autoComplete="off">
+    <RegisterContainer onSubmit={handleRegister} >
 
       <LogInput
         type="text"
         name="userName"
         placeholder="Escolha um nome de usuário"
-        textLabel="Usuário"
+        texttolabel="Usuário"
         minLength={3}
         maxLength={20}
         value={userName}
-        onChange={handleUserNameChange}
+        onChange={handleFormChange}
       />
 
       <span>Seu nome de usuário deve ter no mínimo 3 caracteres e no máximo 20</span>
@@ -78,11 +78,11 @@ export default function Register() {
         type="password"
         name="password"
         placeholder="Sua Senha"
-        textLabel="Senha"
+        texttolabel="Senha"
         minLength={8}
         maxLength={20}
         value={password}
-        onChange={handleUserNameChange}
+        onChange={handleFormChange}
       />
       
         <span>Sua senha deve conter:<br/>
@@ -95,7 +95,7 @@ export default function Register() {
       <LogButton
         disabled={isDisable}
         type="submit"
-        buttonName="Criar minha conta NG.Cash" />
+        buttonname="Criar minha conta NG.Cash" />
 
 
     </RegisterContainer>

@@ -1,10 +1,12 @@
-import { RoutesApp } from './routes'
+import { AppContainer } from './AppStyle';
+import { RoutesApp } from './routes';
+
 
 function App() {
   return (
-    <div>
-      <RoutesApp/>
-    </div>
+    <AppContainer>
+      <RoutesApp />
+    </AppContainer>
   )
 }
 
