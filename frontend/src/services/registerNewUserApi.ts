@@ -8,7 +8,7 @@ export interface IUserLogDTO {
 }
 
 
-export const loginToToken = async (userLogDTO: IUserLogDTO) => {
+export const registerNewUser = async (userLogDTO: IUserLogDTO) => {
   try {
     const { data } = await axios.post((NEW_USER_ACCOUNT_URL), userLogDTO)
     return data

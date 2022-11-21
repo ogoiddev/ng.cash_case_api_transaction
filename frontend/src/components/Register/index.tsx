@@ -1,8 +1,10 @@
-import axios, { AxiosError } from "axios"
+import { AxiosError } from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { saveTokenOnLocalStorage } from "../../Context/LocalStorage";
 import { UserContext } from "../../Context/UserContext";
-import { IUserLogDTO, loginToToken } from "../../services/registerNewUserApi";
+import { loginToToken } from "../../services/loginApi";
+import { IUserLogDTO, registerNewUser } from "../../services/registerNewUserApi";
 import LogButton from "../LogButton";
 import LogInput from "../LogInput";
 import RegisterContainer from "./styles";
@@ -11,7 +13,8 @@ export default function Register() {
   const [userName, setUserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isDisable, setIsDisable] = useState(true);
-  const {setUserData} = useContext(UserContext);
+  const { setUserData } = useContext(UserContext);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -40,20 +43,21 @@ export default function Register() {
       password: dataForm.get('password')
     }
 
-    const data = await loginToToken(DTO as IUserLogDTO)
+    const data = await registerNewUser(DTO as IUserLogDTO)
 
     if (data instanceof AxiosError) {
-      alert(`Sua requisição falhou ==> ${data.response?.data.error}`)
+      return alert(`Sua requisição falhou ==> ${data.response?.data.error}`)
     }
+    
+    const userToSaveData = await loginToToken({ userName: userName, password: password })
+    
+    setUserData(userToSaveData)
+    saveTokenOnLocalStorage('token', userToSaveData.token)
 
-    setUserData(data)
-    console.log(data);
-      
-    saveTokenOnLocalStorage('token', data.token)
-
-
-
+    navigate('/home')
   }
+
+
   return (
     <RegisterContainer onSubmit={handleRegister}>
 
