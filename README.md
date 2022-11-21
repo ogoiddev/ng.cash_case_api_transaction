@@ -1,3 +1,43 @@
+## Para rodar o projeto localmente clone este repositório acesse a pasta e execute o comando:
+```
+docker compose up -d
+```
+
+* Crie seu login para navegar!
+* Voce vai precisar de ter instalado o Docker e Docker Compose.
+_______________________________________________________
+
+## Setup Front-end
+
+### [Vite](https://vitejs.dev/guide/why.html) 
+
+* Utilizamos Vite para cria um projeto React em busca de melhor performance
+
+```
+npm create vite@latest
+```
+
+| go like:
+| :---
+|  Need to install the following packages:
+|  create-vite@3.1.0
+|  Ok to proceed? (y) y
+|  ✔ Project name: … web
+|  ✔ Select a framework: › React
+|  ✔ Select a variant: › TypeScript
+
+
+## [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start)
+
+## [Styled-components](https://styled-components.com/docs/api#typescript)
+```
+npm install --save styled-components
+```
+```
+npm install --save-dev @types/styled-components
+```
+_______________________________________________________
+
 ## Setup inicial do Back-end
 
 * Utilizamos a referencia de um Boilerplate de projeto TS com o ESLint da Trybe e Debugger configurados

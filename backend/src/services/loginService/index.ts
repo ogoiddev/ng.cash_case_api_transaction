@@ -32,6 +32,6 @@ export default class LoginService {
 
     const results = await this.userDB.getUserById(user.id);
 
-    return results;
+    return results.id;
   }
 }

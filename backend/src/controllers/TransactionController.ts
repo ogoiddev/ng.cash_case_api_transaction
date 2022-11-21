@@ -9,6 +9,6 @@ export default class UserController {
     const { body } = req;
     
     const results = await this.service.newTransaction(token, body);
-    res.status(201).json(results);
+    res.status(200).json(results);
   };
 }
