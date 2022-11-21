@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import LoginRegisterPage from "../pages/LoginRegisterPage";
-import { LoginRegisterPageContainer } from "../pages/pageStyles/LoginRegister";
 import Transactions from "../pages/Transactions";
 
 

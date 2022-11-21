@@ -7,6 +7,7 @@ export const LabelInputContainer = styled.label`
 
   min-height: fit-content;
   width: 100%;
+  color: ${({ theme }) => theme.COLORS.PRIMARY};
   
   p {
     font-weight: 600;

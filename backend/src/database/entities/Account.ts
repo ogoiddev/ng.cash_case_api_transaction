@@ -20,8 +20,8 @@ export default class Account {
   account: User;
 
   @OneToMany(() => Transaction, t => t.debitAccount, { eager: true })
-  debitAccountId: Transaction[];
+  debitAccountHistory: Transaction[];
   
   @OneToMany(() => Transaction, t => t.creditAccount, { eager: true })
-  creditAccountId: Transaction[];
+  creditAccountHistory: Transaction[];
 }

@@ -59,7 +59,7 @@ export default function Register() {
 
 
   return (
-    <RegisterContainer onSubmit={handleRegister}>
+    <RegisterContainer onSubmit={handleRegister} autoComplete="off">
 
       <LogInput
         type="text"

@@ -17,6 +17,7 @@ const RegisterContainer = styled.form`
     opacity: 0.9;
     width: 100%;
     padding: 8px;
+    color: ${({ theme }) => theme.COLORS.PRIMARY};
   }
 `;
 

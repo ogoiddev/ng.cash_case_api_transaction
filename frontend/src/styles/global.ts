@@ -8,6 +8,12 @@ export default createGlobalStyle`
     scroll-behavior: smooth;
 
     max-width: 1937px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     /* border: 1px solid red; */
   }
   
@@ -51,7 +57,7 @@ export default createGlobalStyle`
     outline: 4px auto -webkit-focus-ring-color;
   }
 
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     :root {
       color: #213547;
       background-color: #ffffff;
