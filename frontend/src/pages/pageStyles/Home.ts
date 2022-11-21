@@ -25,7 +25,7 @@ export const HomeContainer = styled.div`
     color: ${ props => props.theme.COLORS.ACCENT };
   }
   
-  @media (min-width: 820px) {
+  @media (max-width: 820px) {
     max-width: 95px;
   }
 
