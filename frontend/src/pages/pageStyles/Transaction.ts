@@ -4,6 +4,7 @@ export const TransactionContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 
   min-height: fit-content;
   width: 100%;
@@ -17,24 +18,96 @@ export const TransactionContainer = styled.div`
     color: ${props => props.theme.COLORS.PRIMARY};
   }
 
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 345;
+    width: 80%;
+    height: fit-content;
+
+    padding: 16px;
+
+    justify-content: space-between;
+    
+    button {
+      background: ${props => props.theme.COLORS.ACCENT_GREEN};
+      color: ${props => props.theme.COLORS.CONTRAST};
+      font-size: large;
+      
+      min-height: 43px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+
+      border-radius: 4px;
+
+      :hover {
+        filter: brightness(1.2);
+        transition: 0.3s;
+      }
+
+      * {
+        color: ${props => props.theme.COLORS.CONTRAST};
+      }
+    }
+
+    
+    .by-cash-filter {
+      display: flex;
+      justify-content: space-between;
+
+      gap: 8px;
+
+      button {
+        border: none;
+        width: fit-content;
+        margin: 8px;
+        padding: 4px 16px;
+      }
+    }
+
+    .clear-sort {
+        border: none;
+        width: 60%;
+
+        margin: 8px;
+        padding: 4px 16px;
+    }
+
+
+    .order-by {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+  
+      button {
+        padding: 4px;
+        border: none;
+        height: 36px;
+        margin: 8px;
+      }
+    }
+  }
+  
   .form-transaction-ctn {
     width: 100%;
-    height: 345px;
+    height: 425px;
 
     h3 {
-      line-height: 100%;
-      padding: 1em 0 0 0;
       text-align: center;
       margin: 16px auto;
-      
+      padding: 12px 0;
 
-      border-radius: 4px;
-      width: 80%;
-      flex: 1;
-      border-radius: 4px;
-      border-top: 4px solid ${props => props.theme.COLORS.CONTRAST};
-      border-left: 4px solid ${props => props.theme.COLORS.CONTRAST};
-      border-right: 4px solid ${props => props.theme.COLORS.CONTRAST};
+      font-size: x-large;
+      font-weight: 800;
+      
+      background: ${props => props.theme.COLORS.PRIMARY}20;
+      color: ${props => props.theme.COLORS.PRIMARY};
+
+      width: 100%;
+      height: 54px;
     }
 
     form {
@@ -52,7 +125,7 @@ export const TransactionContainer = styled.div`
 
           font-size: large;
           font-weight: 600;
-          margin: 4px;
+          margin: 8px;
         }
 
 
@@ -94,10 +167,12 @@ export const TransactionContainer = styled.div`
   .history {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
     
-    height: fit-content;
+    min-height: fit-content;
+    
     width: 100%;
     padding: 32px;
 
@@ -118,12 +193,20 @@ export const TransactionContainer = styled.div`
       border-top: 1px solid;
       border-radius: 4px;
 
-      padding: 32px;
+      padding: 12px 28px;
       font-weight: 600;
+      max-width: 345px;
 
 
       background: ${props => props.theme.COLORS.PRIMARY}20;
       color: ${props => props.theme.COLORS.PRIMARY};
+
+      .transfer-type {
+        background: white;
+        padding: 2px 8px;
+        border-radius: 50px;
+        width: fit-content;
+      }
     }
   }
 `;

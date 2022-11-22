@@ -85,6 +85,7 @@ export default function Home() {
         <Transactions />
         
       </HomeContentContainer>
+      
     </HomeContainer>
     );
 }
