@@ -26,7 +26,7 @@ export default class Transaction {
   @Column()
   value: number;
 
-  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(4)" })
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(3)" })
   created_at: Date;
 
 }

@@ -17,7 +17,20 @@ export default function Transactions() {
   const creditHistory = userAccount.creditAccountHistory;
     
   const HistoryTransactions = [...debitHistory, ...creditHistory]
+    .map(each => {
+      const date = `${`0${new Date(each.created_at).getDate()}`.slice(-2)}/${new Date(each.created_at).getMonth()}/${new Date(each.created_at).getFullYear()}`;
+      
+      const time = `${`0${new Date(each.created_at).getHours() - 3}`.slice(-2)}:${new Date(each.created_at).getMinutes()}:${new Date(each.created_at).getSeconds()}`;
 
+      return {
+        ...each,
+        created_at: new Date(each.created_at),
+        date,
+        time,
+      }
+    })
+
+  console.log(HistoryTransactions);
   const handleToTransfer = async () => {
     const token = getTokenFromLocalStorage('token');
     if (!token) {
@@ -90,10 +103,11 @@ export default function Transactions() {
             <div className="transaction-list" key={i}>
               
 
-                  <span className="transfer-date">{`data: ${each.created_at}`}</span>
+                  <span className="transfer-date">{`Data da transferência: ${each.date}`}</span>
+                  <span className="transfer-date">{`Hora (GMT-0300): ${each.time}`}</span>
                   <span className="amount">{`Valor: ${(each.value / 100).toFixed(2).toString().replace('.', ',')}`}</span>
                   <span
-                    style={{color: `${(e: { target: { value: string; }; }) => e.target.value === 'debito' ? 'red' : 'green'}`}}
+                    style={{color: `${each.debited_account_id === userData.account_id ? 'orange' : 'green'}`}}
                     className="transfer-type"
                   >
                     {each.debited_account_id === userData.account_id ? 'debito' : 'credito'}

@@ -36,20 +36,35 @@ export default function Home() {
           <div className="right-side">
             {
               showBalance
-              ? <span className="icons-header">
-                    <EyeClosed weight="regular" size={28} onClick={() => setShowBalance(!showBalance)}/>
+                ? <span
+                    onClick={() => setShowBalance(!showBalance)}
+                    className="icons-header"
+                  >
+                    <EyeClosed weight="regular" size={28}/>
                   </span>
-                : <span className="icons-header">
-                    <Eye weight="regular" size={28} onClick={() => setShowBalance(!showBalance)}/>
+                : <span
+                    onClick={() => setShowBalance(!showBalance)}
+                    className="icons-header"
+                  >
+                    <Eye weight="regular" size={28}/>
                   </span>
             }
-            <span className="icons-header"><Bell weight="regular" size={28}/></span>
-            <span className="icons-header">
+            <span
+              onClick={() => alert("Desfrute o mundo com NG.Cash. Voce ganhou um presente resgate agora mesmo com o Cupom = 'OGOIDDEV_NGCASH'")}  
+              className="icons-header"
+            >
+              <Bell
+                weight="regular"
+                size={28}
+              />
+            </span>
+            <span
+              onClick={() => {
+                localStorage.removeItem('token')
+                navigate('/login/register')
+              }}
+              className="icons-header">
               <SignOut
-                onClick={() => {
-                  localStorage.removeItem('token')
-                  navigate('/login/register')
-                }}
                 weight="regular"
                 size={28}
                 />

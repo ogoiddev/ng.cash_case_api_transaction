@@ -8,13 +8,13 @@ export const TransactionContainer = styled.div`
   min-height: fit-content;
   width: 100%;
 
-  background: ${props => props.theme.COLORS.CONTRAST}35;
+  background: radial-gradient(circle, rgba(242,247,249,1) 0%, rgba(214,233,245,1) 80%, rgba(186,212,232,1) 100%);
   border-radius: 4px;
   
   box-shadow: 0 0 4px ${props => props.theme.COLORS.CONTRAST};
   * {
 
-    color: ${props => props.theme.COLORS.CONTRAST};
+    color: ${props => props.theme.COLORS.PRIMARY};
   }
 
   .form-transaction-ctn {
@@ -65,6 +65,9 @@ export const TransactionContainer = styled.div`
         input {
           flex: 1;
           padding: 4px 16px;
+          font-size: large;
+          font-weight: 500;
+          color: ${props => props.theme.COLORS.PRIMARY};
         }
       }
       
@@ -74,7 +77,7 @@ export const TransactionContainer = styled.div`
       button {
         width: 50%;
         min-width: 100px;
-        flex: 1.5;
+        flex: 1.2;
         margin: 16px;
         border: none;
         background: ${props => props.theme.COLORS.ACCENT};
