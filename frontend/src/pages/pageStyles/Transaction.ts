@@ -8,18 +8,33 @@ export const TransactionContainer = styled.div`
   min-height: fit-content;
   width: 100%;
 
-  background: ${props => props.theme.COLORS.CONTRAST};
+  background: ${props => props.theme.COLORS.CONTRAST}35;
   border-radius: 4px;
-
+  
   box-shadow: 0 0 4px ${props => props.theme.COLORS.CONTRAST};
+  * {
+
+    color: ${props => props.theme.COLORS.CONTRAST};
+  }
 
   .form-transaction-ctn {
     width: 100%;
-    height: 245px;
+    height: 345px;
 
     h3 {
-      color: ${props => props.theme.COLORS.PRIMARY};
-      margin: 16px; 
+      line-height: 100%;
+      padding: 1em 0 0 0;
+      text-align: center;
+      margin: 16px auto;
+      
+
+      border-radius: 4px;
+      width: 80%;
+      flex: 1;
+      border-radius: 4px;
+      border-top: 4px solid ${props => props.theme.COLORS.CONTRAST};
+      border-left: 4px solid ${props => props.theme.COLORS.CONTRAST};
+      border-right: 4px solid ${props => props.theme.COLORS.CONTRAST};
     }
 
     form {
@@ -32,6 +47,13 @@ export const TransactionContainer = styled.div`
       label {
         display: flex;
         flex-direction: column;
+        
+        span {
+
+          font-size: large;
+          font-weight: 600;
+          margin: 4px;
+        }
 
 
         color: ${props => props.theme.COLORS.PRIMARY};
@@ -45,6 +67,10 @@ export const TransactionContainer = styled.div`
           padding: 4px 16px;
         }
       }
+      
+      button:active {
+        transform: translate(1px, 1px);
+      }
       button {
         width: 50%;
         min-width: 100px;
@@ -54,7 +80,7 @@ export const TransactionContainer = styled.div`
         background: ${props => props.theme.COLORS.ACCENT};
         font-size: x-large;
         font-weight: 600;
-
+        
         :hover {
           filter: brightness(1.1)
         }

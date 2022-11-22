@@ -2,12 +2,12 @@ export default {
   TITLE: 'dark',
 
   COLORS: {
-    PRIMARY: '#25283d',
+    PRIMARY: '#232549',
     CONTRAST: '#FCFCFC',
     ACCENT: '#FFBE3B',
     
     TEXT_PRIMARY: '#FCFCFC',
-    TEXT_CONTRAST: '#040f0f',
+    TEXT_CONTRAST: '#232549',
     TEXT_ACCENT: '#FFBE3B',
 
     ACCENT_GREEN: '#11A035',

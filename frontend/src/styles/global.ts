@@ -39,7 +39,7 @@ export default createGlobalStyle`
     font-family: 'Inter', sans-serif;
     width: 100vw;
     height: fit-content;
-  
+    overflow-x: hidden;
   }
 
 

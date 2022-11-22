@@ -3,10 +3,10 @@ export default {
 
   COLORS: {
     PRIMARY: '#FCFCFC',
-    CONTRAST: '#25283d',
+    CONTRAST: '#232549',
     ACCENT: '#FFBE3B',
     
-    TEXT_PRIMARY: '#040f0f',
+    TEXT_PRIMARY: '#232549',
     TEXT_CONTRAST: '#FCFCFC',
     TEXT_ACCENT: '#FFBE3B',
 
