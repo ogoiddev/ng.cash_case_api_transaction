@@ -29,6 +29,8 @@ npm create vite@latest
 
 ## [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start)
 
+## [React Currency Input Field Component](https://www.npmjs.com/package/react-currency-input-field)
+
 ## [Styled-components](https://styled-components.com/docs/api#typescript)
 ```
 npm install --save styled-components

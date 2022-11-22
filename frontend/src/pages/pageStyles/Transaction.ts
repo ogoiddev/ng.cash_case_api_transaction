@@ -21,7 +21,9 @@ export const TransactionContainer = styled.div`
   .filter-options {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+    gap: 16px;
 
     min-width: 345;
     width: 80%;
@@ -29,14 +31,13 @@ export const TransactionContainer = styled.div`
 
     padding: 16px;
 
-    justify-content: space-between;
     
     button {
       background: ${props => props.theme.COLORS.ACCENT_GREEN};
       color: ${props => props.theme.COLORS.CONTRAST};
       font-size: large;
       
-      min-height: 43px;
+      min-height: 33px;
       overflow-wrap: break-word;
       word-wrap: break-word;
       word-break: break-word;
@@ -53,7 +54,44 @@ export const TransactionContainer = styled.div`
       }
     }
 
-    
+    .search-by-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      min-height: 100px;
+      height: fit-content;
+
+      width: 70%;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        height: 64px;
+
+        span {
+          font-size: large;
+          font-weight: 600;
+          
+        }
+
+        input {
+          height: 43px;
+          font-size: large;
+          font-weight: 600;
+          margin: 8px;
+        }
+      }
+
+      button {
+        border: none;
+        width: fit-content;
+        margin: 8px;
+        padding: 4px 16px;
+      }
+    }
+
+
     .by-cash-filter {
       display: flex;
       justify-content: space-between;
@@ -70,7 +108,7 @@ export const TransactionContainer = styled.div`
 
     .clear-sort {
         border: none;
-        width: 60%;
+        width: 70%;
 
         margin: 8px;
         padding: 4px 16px;

@@ -30,14 +30,15 @@ export default function Transactions() {
   const navigate = useNavigate();
   
   
+  
   useEffect(() => {
     const debitHistory = userAccount.debitAccountHistory;
     const creditHistory = userAccount.creditAccountHistory;
     const HistoryTransactions = [...debitHistory, ...creditHistory]
       .map(each => {
-        const date = `${`0${new Date(each.created_at).getDate()}`.slice(-2)}/${new Date(each.created_at).getMonth()}/${new Date(each.created_at).getFullYear()}`;
+        const date = `${`0${new Date(each.created_at).getDate()}`.slice(-2)}/${new Date(each.created_at).getMonth() + 1 }/${new Date(each.created_at).getFullYear()}`;
         
-        const time = `${`0${new Date(each.created_at).getHours() - 3}`.slice(-2)}:${`0${new Date(each.created_at).getMinutes()}`.slice(-2)}:${new Date(each.created_at).getSeconds()}`;
+        const time = `${`0${new Date(each.created_at).getHours() - 3}`.slice(-2)}:${`0${new Date(each.created_at).getMinutes()}`.slice(-2)}:${`0${new Date(each.created_at).getSeconds()}`.slice(-2)}`;
 
         return {
           ...each,
@@ -70,7 +71,7 @@ export default function Transactions() {
 
   const handleNearestDateOrder = () => {
 
-    setHistoryToShow((prev) => prev.sort((a, b) => b.dateTimeToSort.getUTCMinutes() - a.dateTimeToSort.getUTCMinutes()))
+    setHistoryToShow((prev) => prev.sort((a, b) => b.dateTimeToSort.getTime() - a.dateTimeToSort.getTime()))
   }
 
   const handleOldestDateOrder = () => {
@@ -78,9 +79,7 @@ export default function Transactions() {
   }
 
   const handleFilterByDate = () => {
-    setHistoryToShow((prev) => prev.filter(each => {
-      console.log(each.date, dateSelected);
-      
+    setHistoryToShow((prev) => prev.filter(each => {     
       return each.date === dateSelected
     }))
   }
@@ -91,21 +90,29 @@ export default function Transactions() {
       alert('Voce nao possui token de autorização. Faca um login')
       navigate('/login/register')
     }
-    
-  const transferTry = await axiosTransfer({ userName, amount: Number(amount) || 0 }, token)
-    if (transferTry instanceof AxiosError) {
-      setUserName('')
-      setAmount('')
-      console.log(transferTry);
-      
-      return alert(`'Algo de errado ocorreu. Tente novamente'${transferTry.message}`)
+
+    let setAmountNumber = 0
+    if (amount.split(',')[1]) {
+      setAmountNumber = +(Number(amount.split(',')[0]) * 100).toString().replace('.', '') + +amount.split(',')[1];
+    } else {
+      setAmountNumber = +(Number(amount.split(',')[0]) * 100).toString().replace('.', '');
     }
-    alert(`Transferência realizada com sucesso:
-      de: ${userData.user_name}
-      para: ${userName}
-      Valor:  ${transferTry.value / 100}
-      Data: ${transferTry.created_at}
-    `)
+    console.log(setAmountNumber);
+    
+    const transferTry = await axiosTransfer({ userName, amount: setAmountNumber }, token)
+      if (transferTry instanceof AxiosError) {
+        setUserName('')
+        setAmount('')
+        console.log(transferTry);
+        
+        return alert(`'Algo de errado ocorreu. Tente novamente'${transferTry.message}`)
+      }
+      alert(`Transferência realizada com sucesso:
+        de: ${userData.user_name}
+        para: ${userName}
+        Valor:  ${transferTry.value / 100}
+        Data: ${transferTry.created_at}
+      `)
 
   window.location.reload();
 }
@@ -124,13 +131,19 @@ export default function Transactions() {
               minLength={3}
               maxLength={20}
               name="credit"
+              required
             />
           </label>
           <label htmlFor="value"><span>Valor da transferência em R$</span>
             <CurrencyInput
-              onChange={(e) => setAmount(e.target.value)}
+              onChange={(e) => {
+                return setAmount(e.target.value.replace('R$', '').trim())
+              }}
+              required
               placeholder="Ex: R$ 1.485,33"
               
+              
+              fixedDecimalLength={2}
               intlConfig={{ locale: 'pt-br', currency: 'BRL' }}
               />
               
@@ -152,16 +165,23 @@ export default function Transactions() {
       <div className="filter-options">
         <section className="search-by-date">
 
-          <label htmlFor="date"><span>Buscar por data</span>
+          <label htmlFor="date"><span>Buscar por data:</span>
             <input
               onChange={(e) => setDateSelected(e.target.value.split('-').reverse().join('/'))}
             
               type="date"
               />
             </label>
-          <button onClick={handleFilterByDate}>Filtrar por data selecionada</button>
+          <button
+            type="button"
+            onClick={handleFilterByDate}
+          >
+            Filtrar por data selecionada
+          </button>
         </section>
 
+        
+        <h3>Por tipo de transferência:</h3>
 
         <section className="by-cash-filter">
 
@@ -188,6 +208,7 @@ export default function Transactions() {
             Todas Transações
         </button>
         
+        <h3>Ordenar:</h3>
         <section className="order-by">
           <button 
             onClick={handleNearestDateOrder}
