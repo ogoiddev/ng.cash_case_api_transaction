@@ -69,13 +69,8 @@ export default function Transactions() {
     setHistoryToShow(historyData)
   }
 
-  const handleNearestDateOrder = () => {
-
-    setHistoryToShow((prev) => prev.sort((a, b) => b.dateTimeToSort.getTime() - a.dateTimeToSort.getTime()))
-  }
-
-  const handleOldestDateOrder = () => {
-    setHistoryToShow((prev) => prev.sort((a, b) => a.dateTimeToSort.getTime() - b.dateTimeToSort.getTime()))
+  const handleToReverseOrderList = () => {
+    setHistoryToShow((prev) => prev.map((_item, i, array) => array[array.length - i - 1]))
   }
 
   const handleFilterByDate = () => {
@@ -97,7 +92,7 @@ export default function Transactions() {
     } else {
       setAmountNumber = +(Number(amount.split(',')[0]) * 100).toString().replace('.', '');
     }
-    console.log(setAmountNumber);
+    
     
     const transferTry = await axiosTransfer({ userName, amount: setAmountNumber }, token)
       if (transferTry instanceof AxiosError) {
@@ -211,13 +206,13 @@ export default function Transactions() {
         <h3>Ordenar:</h3>
         <section className="order-by">
           <button 
-            onClick={handleNearestDateOrder}
+            onClick={handleToReverseOrderList}
             type="button"
             >
             <SortAscending size={28} />
           </button>
           <button 
-            onClick={handleOldestDateOrder}
+            onClick={handleToReverseOrderList}
             type="button"
             >
             <SortDescending size={28} />
@@ -245,7 +240,7 @@ export default function Transactions() {
               
             </div>
           )
-        }) : <p key="empty">Voce ainda nao fez nenhuma transferência e nao recebeu nenhum credito ate o momento</p>}
+        }) : <p key="empty">Voce ainda nao fez ou nao tem nesta data, nenhuma transferência e nao recebeu nenhum credito ate o momento</p>}
       </div>
     </TransactionContainer>
     );
