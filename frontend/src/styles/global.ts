@@ -6,14 +6,6 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-
-    max-width: 1937px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     /* border: 1px solid red; */
   }
   
@@ -46,13 +38,12 @@ export default createGlobalStyle`
     font-size: 16px;
     font-family: 'Inter', sans-serif;
     width: 100vw;
-    overflow-x: hidden;
     height: fit-content;
   
   }
 
 
-  button:focus,
+  /* button:focus,
   button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
@@ -68,5 +59,5 @@ export default createGlobalStyle`
     button {
       background-color: #f9f9f9;
     }
-  }
+  } */
 `

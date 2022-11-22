@@ -1,12 +1,5 @@
-import axios, { AxiosError } from "axios"
+import axios from "axios"
 import { LOGIN_VALIDATE_URL } from "./endpoints"
-
-
-export interface IUserLogDTO {
-  userName: string,
-  password: string,
-}
-
 
 export const loginValidate = async (AuthStr: string) => {
   

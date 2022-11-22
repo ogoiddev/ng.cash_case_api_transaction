@@ -1,32 +1,64 @@
 import styled from "styled-components";
+import { devices } from "../../styles/devices";
 
 export const HomeContainer = styled.div`
   display: flex;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100vh;
+  height: fit-content;
+
+  @media ${devices.mobileS} {
+    width: 100%;
+  }
+  @media ${devices.tablet} {
+    width: 80%;
+  }
+  @media ${devices.desktop} {
+    width: 70%;
+  }
+  
+  
+  background: ${ props => props.theme.COLORS.PRIMARY }50;
+  color: ${ props => props.theme.COLORS.CONTRAST };
+  `
+
+export const HomeContentContainer = styled.div`
+    display: flex;
   flex-direction: column;
+
+  margin-top: 64px;
 
   justify-content: flex-start;
   align-content: center;
   gap: 16px;
 
-  min-height: 100vh;
-  height: fit-content;
-  min-width: 360px;
-  width: 40vw;
+  width: 50%;
+  min-width: 320px;
   
-  
-  padding: 10% 5%;
-
-  background: ${ props => props.theme.COLORS.PRIMARY }50;
-  color: ${ props => props.theme.COLORS.CONTRAST };
   
   .user-name {
     font-size: x-large;
-    font-weight: 600;
+    font-weight: 800;
     color: ${ props => props.theme.COLORS.ACCENT };
   }
   
-  @media (max-width: 820px) {
-    max-width: 95px;
+
+  @media ${devices.mobileS} {
+    width: 100%;
+  }
+  @media ${devices.mobileL} {
+    width: 96%;
+  }
+  @media ${devices.tablet} {
+    width: 84%;
+  }
+  @media ${devices.laptop} {
+    width: 52%;
+  }
+  @media ${devices.desktop} {
+    width: 40%;
   }
 
 `
@@ -56,7 +88,7 @@ export const PerfilMenuCard = styled.div`
   }
   .user-name {
     font-size: x-large;
-    font-weight: 600;
+    font-weight: 800;
     color: ${ props => props.theme.COLORS.CONTRAST };
     margin-bottom: 16px;
   }
@@ -107,7 +139,7 @@ export const BalanceCard = styled.div`
 
   .balance {
     font-size: x-large;
-    font-weight: 600;
+    font-weight: 800;
     color: ${ props => props.theme.COLORS.ACCENT_GREEN };
   }
 `

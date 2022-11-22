@@ -38,6 +38,11 @@ npm install --save-dev @types/styled-components
 ```
 _______________________________________________________
 
+## [@media Setup - Styled-components](https://www.mariokandut.com/how-to-use-media-queries-in-styled-components/)
+
+
+
+
 ## Setup inicial do Back-end
 
 * Utilizamos a referencia de um Boilerplate de projeto TS com o ESLint da Trybe e Debugger configurados
