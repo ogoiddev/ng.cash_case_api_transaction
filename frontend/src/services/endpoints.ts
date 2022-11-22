@@ -5,3 +5,4 @@ export const NEW_USER_ACCOUNT_URL = `${URL_LOCAL}users/register`
 export const LOGIN_URL = `${URL_LOCAL}login`
 export const LOGIN_VALIDATE_URL = `${URL_LOCAL}login/validate`
 export const GET_USER_BY_ID_URL = `${URL_LOCAL}users`
+export const TRANSACTION_URL = `${URL_LOCAL}transfer`

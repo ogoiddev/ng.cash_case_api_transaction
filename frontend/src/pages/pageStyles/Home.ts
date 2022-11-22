@@ -48,17 +48,14 @@ export const HomeContentContainer = styled.div`
   @media ${devices.mobileS} {
     width: 100%;
   }
-  @media ${devices.mobileL} {
+  @media ${devices.mobileM} {
     width: 96%;
   }
-  @media ${devices.tablet} {
+  @media ${devices.mobileL} {
     width: 84%;
   }
   @media ${devices.laptop} {
-    width: 52%;
-  }
-  @media ${devices.desktop} {
-    width: 40%;
+    width: 72%;
   }
 
 `
@@ -130,6 +127,7 @@ export const BalanceCard = styled.div`
   min-height: fit-content;
 
   padding: 16px;
+  font-weight: 600;
 
   border-radius: 4px;
   box-shadow: 0 0 4px ${ props => props.theme.COLORS.CONTRAST };
