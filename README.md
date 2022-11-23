@@ -10,21 +10,21 @@ docker compose up -d
 * Voce vai precisar de ter instalado o Docker e Docker Compose na sua maquina.
 _______________________________________________________
 
-## Tela de Login - [Para ver o esboco clique aqui para acessar a primeira pagina. (Funcionalidades emandamento)](https://ng-cash-case-api-transaction.vercel.app/login/register)
+## Tela de Login / Register - [Para ver o esboco clique aqui para acessar a primeira pagina. (Funcionalidades emandamento)](https://ng-cash-case-api-transaction.vercel.app/login/register)
 
-![Screenshot]()
+![Screenshot](https://github.com/ogoiddev/ng.cash_case_api_transaction/blob/main/frontend/public/register_Screenshot%202022-11-22%20193535.jpg?raw=true)
 
 _______________________________________________________
 ## Tela de Balance
 
-![Screenshot]()
+![Screenshot](https://github.com/ogoiddev/ng.cash_case_api_transaction/blob/main/frontend/public/balance_Screenshot%202022-11-22%20222531.jpg?raw=true)
 
 
 _______________________________________________________
 
 ## Histórico  
 
-![Screenshot]()
+![Screenshot](https://github.com/ogoiddev/ng.cash_case_api_transaction/blob/main/frontend/public/history_Screenshot%202022-11-22%20222433.jpg?raw=true)
 
 
 _______________________________________________________
