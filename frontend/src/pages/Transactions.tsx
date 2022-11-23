@@ -139,7 +139,7 @@ export default function Transactions() {
               placeholder="Ex: R$ 1.485,33"
               
               
-              fixedDecimalLength={2}
+              
               intlConfig={{ locale: 'pt-br', currency: 'BRL' }}
               />
               
