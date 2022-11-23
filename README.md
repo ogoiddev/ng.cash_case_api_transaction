@@ -255,11 +255,12 @@ Criar o arquivo .eslintrc.json com o seguinte conteúdo:
 
 * NodeJs
 * Express
-* Mongoose
+* Postgres
 * Cors
-* Helmet
-* Swagger
-* ZOD
+* TyprORM
+* Class Validator
+* TypeScript
+
 
 ## [TypeORM - Postgres Driver and Docker Compose tags auto-config](https://typeorm.io/)
 
