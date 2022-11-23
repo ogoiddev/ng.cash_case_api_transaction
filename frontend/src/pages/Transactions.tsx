@@ -98,10 +98,11 @@ export default function Transactions() {
       if (transferTry instanceof AxiosError) {
         setUserName('')
         setAmount('')
-        console.log(transferTry);
         
-        return alert(`'Algo de errado ocorreu. Tente novamente'${transferTry.message}`)
+        alert(`'Algo de errado ocorreu. Nao encontramos o usuário ou voce nao tem permissão para transferências. Tente novamente. Obrigado!`)
+        return window.location.reload()
       }
+
       alert(`Transferência realizada com sucesso:
         de: ${userData.user_name}
         para: ${userName}

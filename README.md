@@ -3,8 +3,30 @@
 docker compose up -d
 ```
 
+* O Front-end vai abrir em = http://localhost:3000/
+
 * Crie seu login para navegar!
-* Voce vai precisar de ter instalado o Docker e Docker Compose.
+
+* Voce vai precisar de ter instalado o Docker e Docker Compose na sua maquina.
+_______________________________________________________
+
+## Tela de Login - [Para ver o esboco clique aqui para acessar a primeira pagina. (Funcionalidades emandamento)](https://ng-cash-case-api-transaction.vercel.app/login/register)
+
+![Screenshot]()
+
+_______________________________________________________
+## Tela de Balance
+
+![Screenshot]()
+
+
+_______________________________________________________
+
+## Histórico  
+
+![Screenshot]()
+
+
 _______________________________________________________
 
 ## Setup Front-end
@@ -38,11 +60,11 @@ npm install --save styled-components
 ```
 npm install --save-dev @types/styled-components
 ```
-_______________________________________________________
 
 ## [@media Setup - Styled-components](https://www.mariokandut.com/how-to-use-media-queries-in-styled-components/)
 
 
+_______________________________________________________
 
 
 ## Setup inicial do Back-end
@@ -279,3 +301,8 @@ npm install cors --save
 ```
 npm install @types/cors --save-dev
 ```
+
+
+
+
+* Aplicamos bastante código com muita paixão aqui. Obrigado pela visita!

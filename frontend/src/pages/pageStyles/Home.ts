@@ -111,11 +111,7 @@ export const PerfilMenuCard = styled.div`
     :hover {
       filter: brightness(1.2)
     }
-  }
-
-
-
-`
+}`
 
 export const BalanceCard = styled.div`
   display: flex;
@@ -123,7 +119,7 @@ export const BalanceCard = styled.div`
   justify-content: space-evenly;
   gap: 8px;
 
-  height: 200px;
+  height: 100px;
   min-height: fit-content;
 
   padding: 16px;

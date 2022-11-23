@@ -72,14 +72,16 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
         
         const userId = await loginValidate(token);
         if (userId instanceof AxiosError) {
+          alert(`Sua requisição falhou (Token Invalid)==> ${userId.response?.data.error}`)
           localStorage.removeItem('token')
-          return alert(`Sua requisição falhou (Token Invalid)==> ${userId.response?.data.error}`)
+          window.location.reload();
         }
 
         const userToSaveData = await getUserByIdApi(userId);
         if (userToSaveData instanceof AxiosError) {
+          alert(`Sua requisição falhou (User Not Found)==> ${userToSaveData.response?.data.error}`)
           localStorage.removeItem('token')
-          return alert(`Sua requisição falhou (User Not Found)==> ${userToSaveData.response?.data.error}`)
+          window.location.reload();
         }
   
         return setUserData(userToSaveData);

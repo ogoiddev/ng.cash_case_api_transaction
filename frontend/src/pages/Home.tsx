@@ -72,14 +72,9 @@ export default function Home() {
           </div>
         </PerfilMenuCard>
         <BalanceCard>
-          <span className="balance">{`Saldo em conta: ${ showBalance ? `R$ ${(userData.account.balance / 100).toFixed(2).toString().replace('.', ',')}` : '******'}`}</span>
-          <span>{`Ultima transferência: ${showBalance
-            ? ((userData.account.debitAccountHistory.at(-1)?.value || 1) / 100).toFixed(2).toString().replace('.', ',') || '- - -'
-            : '******'}`}
-          </span>
-          <span>{`Ultimo credito em conta: ${showBalance
-            ? ((userData.account.creditAccountHistory.at(-1)?.value || 1) / 100).toFixed(2).toString().replace('.', ',') || '- - -'
-            : '******'}`}</span>
+          
+          <span className="balance">{`Saldo em conta: ${showBalance ? `R$ ${(userData.account.balance / 100).toFixed(2).toString().replace('.', ',')}` : '******'}`}</span>
+          
         </BalanceCard>
 
         <Transactions />
