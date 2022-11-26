@@ -257,7 +257,7 @@ Criar o arquivo .eslintrc.json com o seguinte conteúdo:
 * Express
 * Postgres
 * Cors
-* TyprORM
+* TypeORM
 * Class Validator
 * TypeScript
 
